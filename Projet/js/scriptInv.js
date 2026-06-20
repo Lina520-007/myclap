@@ -45,7 +45,7 @@ function displayCharacters(products) {
     }
 
     products.forEach(product => {
-        // Ajout d'une sécurité si le produit n'a pas de photo (évite une image cassée)
+        //Juste au cas y a pas d'images je mets une le logo
         const photo = product.photo_url ? product.photo_url : "ressources/myclap.png";
 
         const productCard = `
