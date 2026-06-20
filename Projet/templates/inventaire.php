@@ -5,7 +5,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php") {
 }
 ?>
 <section class="inventorySection">
-    <h2 class="sectionTitle">Matériel disponible</h2>
+    <h2 class="sectionTitle">Matériels disponibles</h2>
     
     <div class="inventoryContainer" id="inventoryContainer"></div>
 </section>
