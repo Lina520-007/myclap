@@ -1,2 +1,0 @@
-Wooooooow! Ca marche.
-<br> C'est beau Ajax, mais vive les api!

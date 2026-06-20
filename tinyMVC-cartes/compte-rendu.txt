@@ -1,7 +1,0 @@
-
-Auteur : Lina ALAMI
-
-Pour ce CTP j'ai traité les questions 1-2-3-5.
-Pour la question 5 je n'ai pas eu le temps de développer les fonctions supprimerPage() et creerPage();
-
-
