@@ -1,3 +1,9 @@
+<?php
+    include_once("../libs/maLibUtils.php");
+    
+    redirigerParIndexVers("panier");
+?>
+
 <h1> Mon Panier </h1>
 
 <div>
@@ -6,6 +12,10 @@
 
 </br>
 
-<button>
-    Réserver
-</button>
+
+
+<form action="controleur.php">
+
+    <input type="submit" name="action" value="Reserver"/>
+
+</form>
