@@ -13,7 +13,7 @@ $(document).click(function(event) {
   }  
 });
 
-// Sécurisation : on vérifie que le conteneur d'inventaire existe sur la page actuelle
+//on vérifie que le conteneur d'inventaire existe sur la page actuelle
 const inventoryContainer = document.getElementById('inventoryContainer');
 
 document.querySelector('.searchInput').addEventListener('keyup', (event) => {

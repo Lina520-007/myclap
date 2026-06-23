@@ -12,20 +12,17 @@
 
 <!doctype html>
 <html lang="fr">
-  
-<!-- **** H E A D **** -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myCLAP - Emprunts</title>
     
     <link href="jqueryUI/jquery-ui.min.css" rel="stylesheet">
-    <link href="css/styleInv.css" rel="stylesheet">
+    <link href="css/styleFixe.css" rel="stylesheet">
+    <link href="css/styleInventaire.css" rel="stylesheet">
+    <link href="css/styleTableaux.css" rel="stylesheet">
 </head>
-<!-- **** F I N **** H E A D **** -->
-
-
-<!-- **** B O D Y **** -->
 <body>
 
     <!-- HEADER : LOGO ET BARRE DE RECHERCHE -->
@@ -59,7 +56,6 @@
         </div>
     </header>
 
-    <!-- CONTENU DE LA PAGE -->
     <main class="mainZone">
 
         <!-- SIDEBAR -->
@@ -89,8 +85,6 @@
                 </div>
             </nav>
         </aside>
-
-        <!-- CONTENU PRINCIPAL -->
         <section class="mainContent">
 			<?php
 				// S'il est $view est vide, on charge la vue accueil par défaut
@@ -133,7 +127,6 @@
     </main>
     
 </body>
-<!-- **** F I N **** B O D Y **** -->
 
 
 <?php 

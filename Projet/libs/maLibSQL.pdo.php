@@ -1,7 +1,5 @@
 <?php
 
-// V1.0 du 18 mai 2018
-
 if (file_exists("./config.php"))
 	include_once("./config.php");
 else if (file_exists("../libs/config.php"))
@@ -11,21 +9,14 @@ else if (file_exists("libs/config.php"))
 else die("Fichier config introuvable");
 
 /**
- * @file maLibSQL.php
- * Ce fichier définit les fonctions de requêtage
- * Il nécessite d'avoir défini les variables $BDD_login, $BDD_password $BDD_chaine dans config.php, qui est chargé au moment de l'appel de la librairie
- * @note Pour accélérer les traitements, les requêtes aux bases de données seront persistantes : on ne les fermera pas à chaque fin de requête. 
- * On utilise pour cela la fonction pconnect
  * @todo On pourrait tracer les requêtes dans une table de logs
  */
 
 
 /**
- * Exécuter une requête UPDATE. Renvoie le nb de modifs ou faux si pb
- * On testera donc avec === pour différencier faux de 0 
+
  * @return le nombre d'enregistrements affectés, ou false si pb...
  * @param string $sql
- * @pre Les variables  $BDD_login, $BDD_password $BDD_chaine doivent exister
  */
 function SQLUpdate($sql)
 {
@@ -54,12 +45,11 @@ function SQLUpdate($sql)
 	
 }
 
-// Un delete c'est comme un Update
+
 function SQLDelete($sql) {return SQLUpdate($sql);}
 
 
 /**
- * Exécuter une requête INSERT 
  * @param string $sql
  * @pre Les variables  $BDD_login, $BDD_password $BDD_chaine doivent exister
  * @return Renvoie l'insert ID ... utile quand c'est un numéro auto
@@ -91,9 +81,6 @@ function SQLInsert($sql)
 
 
 /**
-* Effectue une requete SELECT dans une base de données SQL SERVER, pour récupérer uniquement un champ (la requete ne doit donc porter que sur une valeur)
-* Renvoie FALSE si pas de resultats, ou la valeur du champ sinon
-* @pre Les variables  $BDD_login, $BDD_password $BDD_chaine doivent exister
 * @param string $SQL
 * @return false|string
 */
@@ -131,9 +118,6 @@ function SQLGetChamp($sql)
 }
 
 /**
- * Effectue une requete SELECT dans une base de données SQL SERVER
- * Renvoie FALSE si pas de resultats, ou la ressource sinon
- * @pre Les variables  $BDD_login, $BDD_password $BDD_chaine doivent exister
  * @param string $SQL
  * @return boolean|resource
  */
@@ -165,9 +149,6 @@ function SQLSelect($sql)
 }
 
 /**
-*
-* Parcours les enregistrements d'un résultat mysql et les renvoie sous forme de tableau associatif
-* On peut ensuite l'afficher avec la fonction print_r, ou le parcourir avec foreach
 * @param resultat_Mysql $result
 */
 function parcoursRs($result)

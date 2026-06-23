@@ -4,14 +4,20 @@
     function rechercherMateriel($recherche) {
         $recherche = addslashes($recherche);
         
-        $SQL = "SELECT p.id, p.nom, p.description, p.caution, ph.url AS photo_url
+        $sql = "SELECT p.id, p.nom, p.description, p.caution, ph.url as photo_url
                 FROM produit AS p
-                LEFT JOIN photos_produit AS ph ON p.id = ph.produitId AND ph.ordre = 0 
+                LEFT JOIN photos_produit AS ph ON p.id = ph.produitId AND ph.ordre = 1 
                 WHERE p.nom LIKE '%$recherche%' OR p.description LIKE '%$recherche%'"; 
                 
-        return parcoursRs(SQLSelect($SQL)); 
+        return parcoursRs(SQLSelect($sql)); 
     }
 
+    function listerArticlesDisponibles() {
+        $sql = "SELECT p.id, p.nom, p.description, p.caution, ph.url AS photo_url
+                FROM produit AS p
+                LEFT JOIN photos_produit AS ph ON p.id = ph.produitId AND ph.ordre = 1";
+        return parcoursRs(SQLSelect($sql));
+    }
     function listerPanier($idUser) {
 
         $sql = "SELECT nom, itemQte, dateDebutEmprunt, dateFinEmprunt
