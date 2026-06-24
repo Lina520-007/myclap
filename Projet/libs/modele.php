@@ -18,7 +18,12 @@
                 LEFT JOIN photos_produit AS ph ON p.id = ph.produitId AND ph.ordre = 1";
         return parcoursRs(SQLSelect($sql));
     }
-    function listerPanier($idUser) {
+
+    /**
+     * Affiche les éléments du panier d'un utilisateur
+     * @param int $userId
+     */
+    function listerPanier($userId) {
         // 
         $sql = "SELECT product.name, quantity, emprunt_item.start_date, emprunt_item.end_date, emprunt.id
         FROM emprunt 
@@ -26,13 +31,17 @@
         ON emprunt.id=emprunt_item.emprunt_id
         INNER JOIN product
         ON product.id = emprunt_item.product_id
-        WHERE user_id='$idUser'
+        WHERE user_id='$userId'
         AND status='CART'";
 
         return parcoursRs(SQLSelect($sql));
     }
 
-    function listerEmprunts($idUser) {
+    /**
+     * Affiche les emprunts d'un utilisateur
+     * @param int $userId
+     */
+    function listerEmprunts($userId) {
         // 
         $sql = "SELECT product.name, emprunt_item.start_date, emprunt_item.end_date, emprunt.status
         FROM emprunt
@@ -40,12 +49,17 @@
         ON emprunt.id = emprunt_item.emprunt_id
         INNER JOIN product
         ON emprunt_item.product_id = product.id
-        WHERE user_id='$idUser'
+        WHERE user_id='$userId'
         AND status!='CART'";
 
         return parcoursRs(SQLSelect($sql));
     }
     
+    /**
+     * Met à jour le statut d'un emprunt
+     * @param int $id
+     * @param string $newStatus
+     */
     function updateEmprunt($id, $newStatus) {
         $sql = "UPDATE emprunt
             SET status = '$newStatus'

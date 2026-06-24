@@ -11,7 +11,10 @@
 ?>
 
 <!doctype html>
+
 <html lang="fr">
+
+ <!------------------------------- HEAD ------------------------------->
 
 <head>
     <meta charset="UTF-8">
@@ -23,9 +26,13 @@
     <link href="css/styleInventaire.css" rel="stylesheet">
     <link href="css/styleTableaux.css" rel="stylesheet">
 </head>
+
+ <!------------------------------- BODY ------------------------------->
+
 <body>
 
-    <!-- HEADER : LOGO ET BARRE DE RECHERCHE -->
+    <!------------- HEADER DU SITE ------------->
+
     <header class="mainHeader">
         <div class="logo">
             <a href="index.php?view=inventaire">
@@ -58,7 +65,8 @@
 
     <main class="mainZone">
 
-        <!-- SIDEBAR -->
+        <!----------------- SIDEBAR ----------------->
+
         <aside class="sideBar" id="sideBar">
             <nav class="sideBarMenu">
                 <a href="index.php?view=inventaire" class="menuItem <?php if ($view == 'inventaire' || !$view) echo 'active'; ?>">
@@ -85,6 +93,9 @@
                 </div>
             </nav>
         </aside>
+
+        <!------------- CONTENU PRINCIPAL ------------->
+
         <section class="mainContent">
 			<?php
 				// S'il est $view est vide, on charge la vue accueil par défaut
@@ -127,6 +138,7 @@
     </main>
     
 </body>
+
 
 
 <?php 
