@@ -1,5 +1,29 @@
 <?php
 
+<<<<<<< Updated upstream
+=======
+// Librairies Luan -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// = mkTable, j'avais envie d'essayer moi même xD
+
+function mkTableBody($panier) {
+    foreach ($panier as $item) {
+        echo "<tr>\n";
+        foreach ($item as $champ => $val) {
+            if ($champ != "id" && $champ != "role") echo "\t<td>$val</td>\n";
+        }
+        echo "</tr>\n";
+    }
+}
+
+// Librairies TWE -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*
+Ce fichier définit diverses fonctions permettant de faciliter la production de mises en formes complexes : 
+tableaux, formulaires, ...
+*/
+// Exemple d'appel :  mkLigneEntete($data,array('pseudo', 'couleur', 'connecte'));
+>>>>>>> Stashed changes
 function mkLigneEntete($tabAsso,$listeChamps=false)
 {
 

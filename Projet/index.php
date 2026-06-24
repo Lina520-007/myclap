@@ -46,7 +46,7 @@
                 <span class="nbEmprunts">0</span>
             </a>
             
-            <a href="index.php?view=login" class="actionBtn">
+            <a href="index.php?view=compte" class="actionBtn">
                 <span class="ui-icon ui-icon-person"></span>
             </a>
             
