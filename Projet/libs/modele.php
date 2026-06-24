@@ -13,14 +13,15 @@
     }
 
     function listerPanier($idUser) {
-        // nom, itemQte, dateDebutEmprunt, dateFinEmprunt, produit.id
+        // name, quantity, start_date, end_date, emprunt.id
         $sql = "SELECT *
-        FROM panier 
-        INNER JOIN panier_item 
-        ON panier.id=panier_item.panierId
-        INNER JOIN produit
-        ON produit.id = panier_item.productId
-        WHERE customerId='$idUser'";
+        FROM emprunt 
+        INNER JOIN emprunt_item 
+        ON emprunt.id=emprunt_item.emprunt_id
+        INNER JOIN product
+        ON product.id = emprunt_item.product_id
+        WHERE customerId='$idUser'
+        AND status=CART";
 
         return parcoursRs(SQLSelect($sql));
     }
@@ -33,8 +34,17 @@
         ON emprunt.id = emprunt_item.emprunt_id
         INNER JOIN produit
         ON emprunt_item.product_id = produit.id
-        WHERE user_id='$idUser'";
+        WHERE user_id='$idUser'
+        AND status!=CART";
 
         return parcoursRs(SQLSelect($sql));
+    }
+    
+    function updateEmprunt($id, $newStatus) {
+        $sql = "UPDATE emprunt
+            SET status = '$newStatus'
+            WHERE id = '$id'";
+        
+        return SQLUpdate($sql);
     }
 ?>

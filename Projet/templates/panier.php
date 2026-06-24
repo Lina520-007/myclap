@@ -71,9 +71,10 @@
     //$idUser = $_SESSION["idUser"];
 
     // On affiche le panier
-    $panier = listerPanier($idUser);
+    $cart = listerPanier($idUser);
+    $cartId = $cart[0]["id"];
 
-    mkTable($panier);
+    mkTable($cart);
 ?>
 
 
@@ -91,7 +92,7 @@
         </thead>
 
         <tbody id="body-panier">
-            <?php mkTableBody($panier); ?>
+            <?php mkTableBody($cart); ?>
         </tbody>
 
     </table>
@@ -103,8 +104,7 @@
 <form action="controleur.php" method="POST">
 
     <?php 
-        mkInput("hidden", "userId", $idUser);
-        mkPanierInput($panier);
+        mkInput("hidden", "cartId", $cartId);
     ?>
 
     <input type="submit" name="action" value="Reserver"/>

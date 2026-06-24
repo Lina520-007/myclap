@@ -52,7 +52,6 @@ function valider($nom,$type="REQUEST")
 	return false; // Si pb pour récupérer la valeur 
 }
 
-
 /**
  * Vérifie l'existence (isset) et la taille (non vide) d'un paramètre dans un des tableaux GET, POST, COOKIE, SESSION
  * Prend un argument définissant la valeur renvoyée en cas d'absence de l'argument dans le tableau considéré
@@ -70,7 +69,6 @@ function getValue($nom,$defaut=false,$type="REQUEST")
 
 	return $resultat;
 }
-
 
 /**
 *
@@ -98,14 +96,12 @@ function proteger($str)
 	//return str_replace("'","''",$str); 	//utile pour les serveurs de bdd Crosoft
 }
 
-
 function tprint($tab)
 {
 	echo "<pre>\n";
 	print_r($tab);
 	echo "</pre>\n";	
 }
-
 
 function rediriger($url,$qs="")
 {
@@ -121,7 +117,6 @@ function rediriger($url,$qs="")
 
 	// TODO: on pourrait passer en parametre le message servant au die...
 }
-
 
 /**
 * Si la page est appelée directement par son adresse, on redirige en passant pas la page index

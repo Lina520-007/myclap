@@ -3,7 +3,7 @@
 
     include_once "libs/maLibUtils.php";
     // include_once "libs/maLibSQL.pdo.php";
-    // include_once "libs/modele.php"; 
+    include_once "libs/modele.php"; 
 
     $qs = "?view=inventaire";
     
@@ -21,7 +21,9 @@
             break;
 
             case "Reserver":
-                echo "blablabla";
+                if ($userId = valider("idUser", "POST") && $cartId = valider("cartId", "POST")) {
+
+                }
                 $qs = "?view=mes_emprunts";
             break;
             

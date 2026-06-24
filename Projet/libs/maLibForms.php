@@ -1,6 +1,6 @@
 <?php
 
-// Librairie Luan -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Librairies Luan -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // = mkTable, j'avais envie d'essayer moi même xD
 function mkTableBody($panier) {
@@ -16,29 +16,34 @@ function mkTableBody($panier) {
 // = les fonction pour faire un formulaire globalement, mais c'est bien de refaire soit même
 function mkPanierInput($panier) {
 
-	$startDate[] = $panier[0]["dateDebutEmprunt"];
+	$startDate = $panier[0]["dateDebutEmprunt"];
+	$endDate = $panier[0]["dateFinEmprunt"];
 
-	// On cree la liste des dates de debut des differents emprunts
+	
 	foreach($panier as $item) {
 		foreach($item as $champ => $val) {
-			if ($champ == "dateDebutEmprunt" && !in_array($val, $startDate)) $startDate[] = $val;
+			// Vérifier qu'il y a bien une seule date de début et de fin
+			if ($champ == "dateDebutEmprunt" && $val != $startDate) echo "ERREUR DE DATES";
+			if ($champ == "dateFinEmprunt" && $val != $endDate) echo "ERREUR DE DATE";
 
+			// Recuperer les valeurs du nom et de la quantite
+			if ($champ == "nom") $nom = $val;
+			if ($champ == "itemQte") $qte = $val;
 		}
 	}
 
-	// Ensuite, pour chaque emprunt, on cree les input
-	foreach($startDate as $emprunt) {
-		foreach($panier as $item) {
+	// On creer les inputs pour transmettre les donnees via le formulaire
+	echo "<input type=\"hidden\" name=\"startDate\" value=\"$startDate\" />";
+	echo "<input type=\"hidden\" name=\"endDate\" value=\"$endDate\" />";
+	echo "<input type=\"hidden\" name=\"nom\" value=\"$nom\" />";
+	echo "<input type=\"hidden\" name=\"qte\" value=\"$qte\" />";
 
-		}
-		echo "<input type=\"hidden\" name=\"emprunt[$emprunt][]\" value=\"\" />";
-	}
 
 	// On cree les inputs à envoyer au controleur.php
 	echo "<input type=\"hidden\" name=\"productIds[]\" value=\"\" />";
 }
 
-// Librairie TWE -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Librairies TWE -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /*
 Ce fichier définit diverses fonctions permettant de faciliter la production de mises en formes complexes : 
