@@ -49,7 +49,7 @@ function displayCharacters(products) {
         const photo = product.photo_url ? product.photo_url : "ressources/myclap.png";
 
         const productCard = `
-            <div class="produit-card">
+            <div class="cardProduct">
                 <img src="${photo}" alt="${product.nom}" width=30%>
                 <div class="produit-info">
                     <h3>${product.nom}</h3>
