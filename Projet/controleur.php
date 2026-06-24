@@ -21,9 +21,12 @@
             break;
 
             case "Reserver":
+                // Met à jour le statut du panier à PENDING
                 if ($cartId = valider("cartId", "POST")) {
                     updateEmprunt($cartId, "PENDING");
                 }
+
+                // Envoie automatiquement vers la page "Mes emprunts"
                 $qs = "?view=mes_emprunts";
             break;
             
