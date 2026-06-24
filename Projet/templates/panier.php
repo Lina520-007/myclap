@@ -67,14 +67,12 @@
     
     // Récupération de l'indentifiant utilisateur
     
-    $idUser = 2;
+    $idUser = 1;
     //$idUser = $_SESSION["idUser"];
 
     // On affiche le panier
     $cart = listerPanier($idUser);
-    $cartId = $cart[0]["id"];
-
-    mkTable($cart);
+    if ($cart != null) $cartId = $cart[0]["id"];
 ?>
 
 
@@ -104,7 +102,7 @@
 <form action="controleur.php" method="POST">
 
     <?php 
-        mkInput("hidden", "cartId", $cartId);
+        if ($cart != null) mkInput("hidden", "cartId", $cartId);
     ?>
 
     <input type="submit" name="action" value="Reserver"/>

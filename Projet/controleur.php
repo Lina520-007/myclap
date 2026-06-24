@@ -15,14 +15,14 @@
 
             case "Recherche AJAX":
                 $search = valider("search"); 
-                $resultats = rechercherMateriel($search);
-                echo json_encode($resultats);
+                // $resultats = rechercherMateriel($search);
+                // echo json_encode($resultats);
                 die(); 
             break;
 
             case "Reserver":
-                if ($userId = valider("idUser", "POST") && $cartId = valider("cartId", "POST")) {
-
+                if ($cartId = valider("cartId", "POST")) {
+                    updateEmprunt($cartId, "PENDING");
                 }
                 $qs = "?view=mes_emprunts";
             break;
