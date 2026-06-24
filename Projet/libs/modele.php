@@ -13,8 +13,8 @@
     }
 
     function listerPanier($idUser) {
-
-        $sql = "SELECT nom, itemQte, dateDebutEmprunt, dateFinEmprunt
+        // nom, itemQte, dateDebutEmprunt, dateFinEmprunt, produit.id
+        $sql = "SELECT *
         FROM panier 
         INNER JOIN panier_item 
         ON panier.id=panier_item.panierId
@@ -26,7 +26,8 @@
     }
 
     function listerEmprunts($idUser) {
-        $sql = "SELECT nom, start_date, end_date, emprunt.status 
+        // nom, start_date, end_date, emprunt.status
+        $sql = "SELECT *
         FROM emprunt
         INNER JOIN emprunt_item
         ON emprunt.id = emprunt_item.emprunt_id

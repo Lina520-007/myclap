@@ -72,6 +72,8 @@
 
     // On affiche le panier
     $panier = listerPanier($idUser);
+
+    mkTable($panier);
 ?>
 
 
@@ -98,7 +100,12 @@
 
 </br>
 
-<form action="controleur.php">
+<form action="controleur.php" method="POST">
+
+    <?php 
+        mkInput("hidden", "userId", $idUser);
+        mkPanierInput($panier);
+    ?>
 
     <input type="submit" name="action" value="Reserver"/>
 

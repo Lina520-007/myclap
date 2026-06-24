@@ -1,6 +1,44 @@
 <?php
 
-// V1.0 du 18 mai 2018
+// Librairie Luan -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// = mkTable, j'avais envie d'essayer moi même xD
+function mkTableBody($panier) {
+	foreach ($panier as $item) {
+		echo "<tr>\n";
+		foreach ($item as $champ => $val) {
+			if ($champ != "id") echo "\t<td>$val</td>\n";
+		}
+		echo "</tr>\n";
+	}
+}
+
+// = les fonction pour faire un formulaire globalement, mais c'est bien de refaire soit même
+function mkPanierInput($panier) {
+
+	$startDate[] = $panier[0]["dateDebutEmprunt"];
+
+	// On cree la liste des dates de debut des differents emprunts
+	foreach($panier as $item) {
+		foreach($item as $champ => $val) {
+			if ($champ == "dateDebutEmprunt" && !in_array($val, $startDate)) $startDate[] = $val;
+
+		}
+	}
+
+	// Ensuite, pour chaque emprunt, on cree les input
+	foreach($startDate as $emprunt) {
+		foreach($panier as $item) {
+
+		}
+		echo "<input type=\"hidden\" name=\"emprunt[$emprunt][]\" value=\"\" />";
+	}
+
+	// On cree les inputs à envoyer au controleur.php
+	echo "<input type=\"hidden\" name=\"productIds[]\" value=\"\" />";
+}
+
+// Librairie TWE -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /*
 Ce fichier définit diverses fonctions permettant de faciliter la production de mises en formes complexes : 
@@ -88,16 +126,6 @@ function mkTable($tabData,$listeChamps=false)
 	// S'il est défini, on affiche uniquement les champs listés dans ce tableau, 
 	// dans l'ordre du tableau
 	
-}
-
-function mkTableBody($panier) {
-	foreach ($panier as $item) {
-		echo "<tr>\n";
-		foreach ($item as $champ => $val) {
-			echo "\t<td>$val</td>\n";
-		}
-		echo "</tr>\n";
-	}
 }
 
 // Produit un menu déroulant portant l'attribut name = $nomChampSelect

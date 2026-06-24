@@ -67,6 +67,8 @@
     $idUser = 1;
 
     $emprunts = listerEmprunts($idUser);
+
+    mkTable($emprunts);
 ?>
 
 <div id="panier">
