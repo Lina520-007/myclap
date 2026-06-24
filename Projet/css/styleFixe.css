@@ -208,6 +208,7 @@
    /* Conenu principal */ 
    .mainContent { 
      margin-left: 20px; 
+     margin-right: 20px; 
      flex: 1; 
      min-width: 0; 
    } 
