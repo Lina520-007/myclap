@@ -212,4 +212,35 @@
      flex: 1; 
      min-width: 0; 
    } 
- }
+
+   /*bouton*/
+   .button-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(135deg, #181818, #0f0f0f);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button-primary:hover {
+    background: #242424;
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.button-primary:active {
+    background: #111111;
+    transform: translateY(0);
+}
+   
+  }
