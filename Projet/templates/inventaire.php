@@ -11,71 +11,42 @@
 
     $userId = 2;
 ?>
- <!-------------Filtres------------->
-<div class="filtersSection">
+
+<!-------------Filtres----->
+<section class="filtersSection">
+    <?php mkForm("controleur.php", "POST"); ?>
+
     <span class="filtersTitle">Filtres :</span>
-    
+
     <div class="dropdown elmtsFilter">
-
-<style>
-
-    .produit-details {
-        display: none;
-    }
-
-    .produit-details.open {
-        display: block;
-    }
-
-</style>
-<?php
-    $articles = listerArticlesDisponibles();
-?>
- <!-------------Filtres------------->
-<div class="filtersSection">
-
-<?php mkForm("controleur.php", "POST"); ?>
-
-<span class="filtersTitle">Filtres :</span>
-
-<div class="dropdown elmtsFilter" >
-        <button class="dropdownBtn">▼ Catégories </button>
+        <button class="dropdownBtn" type="button">▼ Catégories</button>
         <div class="dropdownElmts">
             <?php foreach (listerCategory() as $category): ?>
                 <label><input type="checkbox" name="categorie" value="<?= $category['id'] ?>"><?php echo htmlspecialchars($category['name']) ?></label>
             <?php endforeach; ?>
         </div>
     </div>
-<div class="elmtsFilter">
-<?php 
-if (isset($_SESSION["idUser"])) {
-    mkRadioCb("checkbox", "favoris", "1");
-    echo "Favoris";
- }
-?>
-</div>
-<div class="elmtsFilter">
-<div>Disponible à partir de :</div> 
-<?php mkCalendar("Date");
-mkInput("submit", "action", "Appliquer les filtres", "button-primary");
-?>
-</div>
-</div>
-<?php endForm(); ?>
 
- <!------------- SECTION PRINCIPALE: affichage de tous les éléments ------------->
+    <div class="elmtsFilter">
+        <?php 
+        if (isset($_SESSION["idUser"])) {
+            mkRadioCb("checkbox", "favoris", "1");
+            echo "Favoris";
+        }
+        ?>
+    </div>
 
-<style>
+    <div class="elmtsFilter dateSelection">
+        <span>Disponible à partir de :</span>
+        <?php mkCalendar("Date"); ?>
+    </div>
 
-    .produit-details {
-        display: none;
-    }
+    <?php mkInput("submit", "action", "Appliquer les filtres", "button-primary"); ?>
+    <?php endForm(); ?>
+</section>
 
-    .produit-details.open {
-        display: block;
-    }
+<!------------- SECTION PRINCIPALE: affichage de tous les éléments ------------->
 
-</style>
 
 <section class="inventorySection">
 
