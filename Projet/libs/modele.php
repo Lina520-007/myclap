@@ -34,15 +34,19 @@
     }
     
     function createCart($userId, $startDate, $endDate) {
-        $sql = "INSERT INTO emprunt (id, start_date, end_date, return_date, status, user_id) VALUES (NULL, '$startDate', '$endDate', NULL, 'CART', '$userId')";
+        $sql = "INSERT INTO emprunt (id, start_date, end_date, return_date, status, user_id) 
+        VALUES (NULL, '$startDate', '$endDate', NULL, 'CART', '$userId')";
 
         SQLInsert($sql);
 
         return getUserCart($userId);
     }
     
-    function addToCart($cart, $itemId, $qte) {
+    function addToCart($cartId, $itemId, $qte, $startDate, $endDate) {
+        $sql = "INSERT INTO emprunt_item (id, product_id, quantity, start_date, emprunt_id, end_date) 
+        VALUES (NULL, '$itemId', '$qte', '$startDate', '$cartId', '$endDate')";
 
+        SQLInsert($sql);
     }
     
     /**

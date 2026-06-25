@@ -36,11 +36,15 @@
 
                 $cart = getUserCart($userId);
                 var_dump($cart);
+
                 if ($cart == false) {
                     $cart = createCart($userId, $startDate, $endDate);
                     var_dump($cart);
-                    die("BRUH");
                 }
+
+                addToCart($cart[0]["id"], $itemId, $qte, $startDate, $endDate);
+                die("BRUH". "\n");
+                
             break;
 
             case "Reserver":
