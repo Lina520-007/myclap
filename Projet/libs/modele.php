@@ -24,8 +24,6 @@
         $sql = "SELECT start_date, end_date, quantity
             FROM emprunt_item
             WHERE product_id = '$itemId'";
-        
-        $bru = SQLSelect($sql);
 
         return parcoursRs(SQLSelect($sql));
     }
