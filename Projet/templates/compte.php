@@ -13,17 +13,16 @@
 </div>
 
 <?php
-    /*
     // Si l'utilisateur n'est pas connecté, on le renvoie vers la page de connection
     if (!isset($_SESSION["idUser"])) {
         $url = dirname($_SERVER["PHP_SELF"]) . "/index.php?view=login";
         header("Location:$url");
         die();
     }
-    */
+    
 
-    //$idUser = $_SESSION["idUser"];
-    $idUser = 1;
+    $idUser = $_SESSION["idUser"];
+    //$idUser = 1;
 
 
     $userInfo = userInfo($idUser);

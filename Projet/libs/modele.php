@@ -50,7 +50,8 @@
 
     return parcoursRS(SQLSelect($SQL));
     }
-    // les infos d'un utilisateur
+
+ 
     function userInfo($user_id) {
         $SQL = "SELECT id, name, role, contact, flat_num, score FROM user WHERE id='$user_id'"; 
         return parcoursRs(SQLSelect($SQL));
@@ -62,18 +63,14 @@
      * @param int $id
      * @param string $newStatus
      */
+
     function updateEmprunt($id, $newStatus) {
         $sql = "UPDATE emprunt
             SET status = '$newStatus'
             WHERE id = '$id'";
-    function listerUtilisateurs($tri = "tout") {
-    $SQL = "SELECT name, contact, role, id, flat_num, score FROM user ORDER BY id DESC";
+    }
 
-    
-    return parcoursRS(SQLSelect($SQL));
-}
-
-
+   
 function isAdmin($idUser)
 {
 	$SQL = "SELECT role FROM user WHERE id='$idUser' and role=1"; 
@@ -107,7 +104,7 @@ function retirerAdmin($idUser){
 
 }
 
-function gestionEmprunts($userId) {
+/*function gestionEmprunts($userId) {
    
     $sql = "SELECT 
                 COALESCE(SUM(CASE WHEN status = 'fini' THEN 1 ELSE 0 END), 0) AS emprunts_termines,
@@ -124,21 +121,9 @@ function gestionEmprunts($userId) {
             return $tableauResultats[0];
         }
     }
+*/
 
-
-    function isAdmin($idUser)
-    {
-        $SQL = "SELECT role FROM user WHERE id='$idUser' and role=1"; 
-        return SQLGetChamp($SQL);
-        // vérifie si l'utilisateur est un administrateur
-    }
-
-
-function ajouterUtilisateur($nom, $contact, $passe ){
-    $SQL= "INSERT INTO user(name, contact, password,) VALUES ('$nom','$contact','$passe') ";
-    return SQLInsert($SQL);
-}
-
+  
 function updateUser($idUser, $nom, $contact, $numAppart, $score) {
     $SQL = "UPDATE user 
         SET name='$nom', contact='$contact', flat_num='$numAppart', score='$score' 
@@ -146,25 +131,6 @@ function updateUser($idUser, $nom, $contact, $numAppart, $score) {
     return SQLUpdate($SQL);
 }
 
-
-function verifUserBdd($nom,$passe){
-    $SQL="SELECT id from user WHERE name='$nom' AND password='$passe'";
-    return SQLGetChamp($SQL); 
-
-
-}
-
-function rendreAdmin($idUser){
-    $SQL="UPDATE user SET role=1 WHERE id='$idUser'";
-    SQLUpdate($SQL);
-}
-
-function retirerAdmin($idUser){
-    $SQL="UPDATE user SET role=0 WHERE id='$idUser'";
-    SQLUpdate($SQL);
-
-
-}
 
 function gestionEmprunts($userId) {
    

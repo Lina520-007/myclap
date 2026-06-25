@@ -38,9 +38,6 @@
                 $qs = "?view=compte";
             break;
 
-    }
-
-}
             case 'Se connecter':
 				
                 if ($name = valider('name'))

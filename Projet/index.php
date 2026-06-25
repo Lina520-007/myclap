@@ -25,6 +25,9 @@
     
     <link href="jqueryUI/jquery-ui.min.css" rel="stylesheet">
     <link href="css/styleInv.css" rel="stylesheet">
+    <link href="css/styleInventaire.css" rel="stylesheet">
+    <link href="css/styleFixe.css" rel="stylesheet">
+    <link href="css/styleTableaux.css" rel="stylesheet">
 </head>
 <!-- **** F I N **** H E A D **** -->
 
