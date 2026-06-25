@@ -29,8 +29,21 @@
                 // Envoie automatiquement vers la page "Mes emprunts"
                 $qs = "?view=mes_emprunts";
             break;
-            
-        }
+
+            case 'Sauvegarder les modifications':
+                $idUser = valider("id");
+                $name = valider("name");
+                $contact = valider("contact");
+                $flat_num = valider("flat_num");
+                $score = valider("score");
+
+                updateUser($idUser, $name, $contact, $flat_num, $score);
+                echo userInfo($idUser);
+                $qs = "?view=compte";
+            break;
+
+    }
+
 }
     // Redirection après traitement de la requete
     $urlBase = dirname($_SERVER["PHP_SELF"]) . "/index.php";

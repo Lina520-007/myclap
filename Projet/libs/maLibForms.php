@@ -1,16 +1,19 @@
 <?php
 
+
+
 // Librairies Luan -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // = mkTable, j'avais envie d'essayer moi même xD
+
 function mkTableBody($panier) {
-	foreach ($panier as $item) {
-		echo "<tr>\n";
-		foreach ($item as $champ => $val) {
-			if ($champ != "id") echo "\t<td>$val</td>\n";
-		}
-		echo "</tr>\n";
-	}
+    foreach ($panier as $item) {
+        echo "<tr>\n";
+        foreach ($item as $champ => $val) {
+            if ($champ != "id" && $champ != "role") echo "\t<td>$val</td>\n";
+        }
+        echo "</tr>\n";
+    }
 }
 
 // Librairies TWE -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -123,9 +126,9 @@ function endForm()
 	echo "</form>\n";
 }
 
-function mkInput($type,$name,$value="")
+function mkInput($type,$name,$value="",$class="")
 {
-	echo "<input type=\"$type\" name=\"$name\" value=\"$value\"/>\n";
+	echo "<input type=\"$type\" name=\"$name\" value=\"$value\" class='$class'/>\n";
 }
 
 function mkRadioCb($type,$name,$value,$checked=false)
