@@ -21,9 +21,12 @@
     }
 
     function getEmpruntsWithItem($itemId, $userId) {
-        $sql = "SELECT start_date, end_date, quantity
-            FROM emprunt_item
-            WHERE product_id = '$itemId'";
+        $sql = "SELECT e.start_date, e.end_date, quantity 
+            FROM emprunt_item as e
+            JOIN emprunt
+            ON emprunt.id = e.emprunt_id
+            WHERE product_id = '$itemId'
+            AND emprunt.status != 'CART'";
 
         return parcoursRs(SQLSelect($sql));
     }
