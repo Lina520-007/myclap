@@ -65,47 +65,6 @@
 
                 </div>
 
-                <!-- DESCRIPTION -->
-                <form action="controleur.php" method="POST">
-
-                    <?php mkInput("hidden", "userId",$userId) ?>
-                    <?php mkInput("hidden", "id",$article["id"]) ?>
-
-                    <div class="produit-details">
-
-                        <p class="description">Description : <?= htmlspecialchars($article['description'] ?? 'Pas de description disponible') ?></p>
-
-                        <span class="caution">Caution : <?= $article['bail'] ?>€</span>
-
-                        <div>
-                            Quantité : 
-                            <select class="selection" name="quantite">
-                                <?php 
-                                    $qte = $article['stock'];
-                                    for ($i=1 ; $i<$qte+1 ; $i++) {
-                                        echo "<option value=\"$i\">\n";
-                                        echo "$i";
-                                        echo "</option>\n";
-                                    }
-                                ?>
-                            </select>
-                        </div>
-
-                        <div class="datesPicker">
-                            <label>
-                                Début : <input type="date" name="dateDebut" min="2026-01-01" max="2026-12-31">
-                            </label>
-                            <label>
-                                Fin : <input type="date" name="dateFin">
-                            </label>
-                        </div>
-
-                        <input class="ajouterPanierBtn" type="submit" name="action" value="Ajouter au panier"/>
-
-                    </div>
-
-                </form>
-
                 <div class="detailsProduct" style="display:none;">
                     <p class="description">Description : <?= htmlspecialchars($article['description'] ?? 'Pas de description disponible') ?></p>
                     <span class="bail">bail : <?= $article['bail'] ?>€</span>
