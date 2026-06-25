@@ -17,7 +17,7 @@
                 $resultats = rechercherMateriel($search);
                 header('Content-Type: application/json');
                 echo json_encode($resultats);
-                die(); 
+                die();
             break;
 
             case "Ajouter au panier":
@@ -35,16 +35,12 @@
                 $endDate = valider("dateFin");
 
                 $cart = getUserCart($userId);
-                var_dump($cart);
 
                 if ($cart == false) {
                     $cart = createCart($userId, $startDate, $endDate);
-                    var_dump($cart);
                 }
 
                 addToCart($cart[0]["id"], $itemId, $qte, $startDate, $endDate);
-                die("BRUH". "\n");
-                
             break;
 
             case "Reserver":

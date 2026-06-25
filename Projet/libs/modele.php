@@ -26,7 +26,8 @@
         FROM user
         JOIN emprunt
         ON user.id = emprunt.user_id
-        WHERE user.id = '$userId'";
+        WHERE user.id = '$userId'
+        AND emprunt.status = 'CART'";
         
         $output = SQLSelect($sql);
 

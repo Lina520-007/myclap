@@ -18,7 +18,7 @@
     */
 
     //$idUser = $_SESSION["idUser"];
-    $idUser = 1;
+    $idUser = 2;
 
     $emprunts = listerEmprunts($idUser);
 ?>
