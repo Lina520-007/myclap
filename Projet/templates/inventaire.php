@@ -14,14 +14,14 @@
             <div class="produit-card">
                 <div class="produit-header">
                     <img src="<?= $article['photo_url'] ?? 'ressources/myclap.png' ?>" 
-                         alt="<?= htmlspecialchars($article['nom']) ?>">
-                    <h3><?= htmlspecialchars($article['nom']) ?></h3>
+                         alt="<?= htmlspecialchars($article['name']) ?>">
+                    <h3><?= htmlspecialchars($article['name']) ?></h3>
                     <button class="toggleBtn">+</button>
                 </div>
 
                 <div class="produit-details" style="display:none;">
                     <p class="description">Description : <?= htmlspecialchars($article['description'] ?? 'Pas de description disponible') ?></p>
-                    <span class="caution">Caution : <?= $article['caution'] ?>€</span>
+                    <span class="caution">Caution : <?= $article['bail'] ?>€</span>
 
                     <div class="datesPicker">
                         <label>Début : <input type="date" name="dateDebut"></label>
