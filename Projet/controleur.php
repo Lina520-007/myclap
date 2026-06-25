@@ -35,7 +35,7 @@
 					
                     if (verifUser($name,$password))
                        {
-						$qs = "?view=accueil";
+						$qs = "?view=inventaire";
 					   
 					    	
 					   }
@@ -44,7 +44,7 @@
 			case 'Logout': 
 				
 				session_destroy();
-				$qs = "?view=accueil";
+				$qs = "?view=inventaire";
 
 			break;
 
@@ -63,7 +63,7 @@
 					ajouterUtilisateur($name,$contact, $password);
 					
 					}
-				$qs = "?view=accueil"; 
+				$qs = "?view=inventaire"; 
 
 
 
