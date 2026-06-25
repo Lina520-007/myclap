@@ -1,7 +1,7 @@
 <?php
 
-<<<<<<< Updated upstream
-=======
+
+
 // Librairies Luan -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // = mkTable, j'avais envie d'essayer moi même xD
@@ -23,7 +23,7 @@ Ce fichier définit diverses fonctions permettant de faciliter la production de 
 tableaux, formulaires, ...
 */
 // Exemple d'appel :  mkLigneEntete($data,array('pseudo', 'couleur', 'connecte'));
->>>>>>> Stashed changes
+
 function mkLigneEntete($tabAsso,$listeChamps=false)
 {
 
@@ -82,7 +82,7 @@ function mkTable($tabData,$listeChamps=false)
 	echo "</table>\n";	
 }
 
-function mkTableBody($panier) {
+/*function mkTableBody($panier) {
 	foreach ($panier as $item) {
 		echo "<tr>\n";
 		foreach ($item as $champ => $val) {
@@ -90,7 +90,7 @@ function mkTableBody($panier) {
 		}
 		echo "</tr>\n";
 	}
-}
+}*/
 
 
 function mkSelect($nomChampSelect, $tabData,$champValue, $champLabel,$selected=false,$champLabel2=false)

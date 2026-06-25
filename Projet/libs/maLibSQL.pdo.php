@@ -149,7 +149,8 @@ function SQLSelect($sql)
 }
 
 /**
-* @param resultat_Mysql $result
+* @param resultat_Mysql $result	
+ @param resultat_Mysql $result
 */
 function parcoursRs($result)
 {

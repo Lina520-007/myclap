@@ -42,8 +42,7 @@
 
         return parcoursRs(SQLSelect($sql));
     }
-<<<<<<< Updated upstream
-=======
+
     
     function listerUtilisateurs($tri = "tout") {
     $SQL = "SELECT name, contact, role, id, flat_num, score FROM user ORDER BY id DESC";
@@ -150,5 +149,5 @@ function filtrerEmprunts($filtre) {
 
 
 
->>>>>>> Stashed changes
+
 ?>
