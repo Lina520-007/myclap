@@ -11,7 +11,11 @@
      color: #fff; 
      font-family: Arial, sans-serif; 
  } 
+
  .headerProduct { 
+
+ .produit-header { 
+
      display: flex; 
      flex-direction: column; 
      align-items: center; 
@@ -195,3 +199,211 @@
         width: auto;
     }
  }
+   .produit-header img { height: 180px; } 
+ }
+
+/* Inventaire */
+.inventoryContainer {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.cardProduct {
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #2a2a2a;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+.headerProduct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+.headerProduct img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+.headerProduct h3 {
+    margin: 10px 0 5px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+}
+.toggleBtn {
+    background-color: #222222;
+    color: white;
+    border: 2px solid #ff0502;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 8px;
+}
+.toggleBtn:hover { background-color: #ff0502; }
+.detailsProduct {
+    padding: 10px 15px 15px;
+    border-top: 2px solid #ff0502;
+    background-color: #161616;
+    color: #d0d0d0;
+}
+.description {
+    margin-bottom: 8px;
+    color: #aaaaaa;
+    font-size: 0.9rem;
+}
+.caution {
+    display: block;
+    font-weight: bold;
+    margin: 8px 0;
+    color: #ff0502;
+}
+.datesPicker {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px 0;
+    font-size: 0.85rem;
+    color: #d0d0d0;
+}
+.datesPicker input[type="date"] {
+    background-color: #222222;
+    border: 1px solid #2a2a2a;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 4px;
+    outline: none;
+}
+.datesPicker input[type="date"]:focus { border-color: #ff0502; }
+.addCartBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #222222;
+    color: white;
+    border: 1px solid #ff0502;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+}
+.addCartBtn:hover { background-color: #ff0502; }
+
+/* zone filtres (règles mises à jour) */
+.filtersSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 12px;
+    background-color: #1a1a1a;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 6px;
+    border: 1px solid #2a2a2a;
+    align-items: center;
+}
+
+.filtersTitle {
+    font-weight: bold;
+    color: white;
+    font-size: 1.1rem;
+    margin-right: 8px;
+}
+
+.elmtsFilter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    margin-right: 8px;
+    flex: 0 0 auto;
+}
+
+/* Style du menu déroulant Catégories */
+.dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.dropdownBtn {  
+    background-color: #222;
+    color: white;
+    border: 1px solid #444;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: auto;
+    text-align: left;
+}
+
+.dropdownElmts {
+    display: none;
+    position: absolute;
+    background-color: #222;
+    border: 1px solid #444;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+    border-radius: 4px;
+    padding: 8px;
+    z-index: 100;
+}
+
+.dropdownElmts label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 4px;
+    cursor: pointer;
+    color: white;
+}
+
+.dropdownElmts label:hover {
+    background-color: #333;
+}
+
+/* Affiche le menu au click */
+.dropdown.open .dropdownElmts {
+    display: block;
+}
+
+.dateSelection {
+    flex-wrap: wrap;
+}
+
+.dateSelection input[type="date"] {
+    background-color: #222;
+    border: 1px solid #2a2a2a;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    outline: none;
+}
+
+
+/* Écrans larges (>= 768px)*/
+@media (min-width: 768px) {
+  .inventoryContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 20px;
+      padding: 20px;
+  }
+  .headerProduct img { height: 180px; }
+
+  /*zone filtres*/
+  .filtersSection {
+       flex-direction: row;
+       align-items: center;
+       gap: 25px;
+       margin: 20px;
+   }
+
+   .dropdownBtn {
+       width: auto;
+   }
+}
+

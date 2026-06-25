@@ -42,6 +42,26 @@
                 $qs = "?view=compte";
             break;
 
+            case 'Appliquer les filtres':
+                $categorie = valider("categorie", "POST");
+                $Date = valider("Date", "POST");
+                $favoris = valider("favoris", "POST");
+
+                $qs = "?view=inventaire";
+                if ($categorie) {
+                    $qs .= "&categorie=" . urlencode($categorie);
+                }
+                if ($Date) {
+                    $qs .= "&Date=" . urlencode($Date);
+                }
+                if ($favoris) {
+                    $qs .= "&favoris=" . urlencode($favoris);
+                }
+
+            break;
+
+
+
     }
 
 }

@@ -1,8 +1,10 @@
 <?php
     include_once("libs/maLibUtils.php");
+    include_once("libs/maLibForms.php");    
     include_once("libs/modele.php");
     
     redirigerParIndexVers("inventaire");
+
     $articles = listerArticlesDisponibles();
 ?>
  <!-------------Filtres------------->
@@ -11,26 +13,54 @@
     
     <div class="dropdown elmtsFilter">
 
-        <button class="dropdownBtn"> ▼ Catégories </button>
+<style>
+
+    .produit-details {
+        display: none;
+    }
+
+    .produit-details.open {
+        display: block;
+    }
+
+</style>
+<?php
+    $articles = listerArticlesDisponibles();
+?>
+ <!-------------Filtres------------->
+<div class="filtersSection">
+
+<?php mkForm("controleur.php", "POST"); ?>
+
+<span class="filtersTitle">Filtres :</span>
+
+<div class="dropdown elmtsFilter" >
+        <button class="dropdownBtn">▼ Catégories </button>
         <div class="dropdownElmts">
             <?php foreach (listerCategory() as $category): ?>
-                <label><input type="checkbox" name="categorie" value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></label>
+                <label><input type="checkbox" name="categorie" value="<?= $category['id'] ?>"><?php echo htmlspecialchars($category['name']) ?></label>
             <?php endforeach; ?>
         </div>
     </div>
-    
-    <label class="favCheck elmtsFilter">
-        <?php if (isset($_SESSION["idUser"])): ?>
-            <input type="checkbox" name="favoris" id="favFilter">Favoris
-        <?php endif; ?>
-    </label>
-    
-    <div class="dateSelection elmtsFilter">
-        <label for="filtreDate">Disponible à partir de :</label>
-        <input type="date" id="filtreDate" name="dateFiltre">
-    </div>
- </div>
+<div class="elmtsFilter">
+<?php 
+if (isset($_SESSION["idUser"])) {
+    mkRadioCb("checkbox", "favoris", "1");
+    echo "Favoris";
+ }
+?>
+</div>
+<div class="elmtsFilter">
+<div>Disponible à partir de :</div> 
+<?php mkCalendar("Date");
+mkInput("submit", "action", "Appliquer les filtres", "button-primary");
+?>
+</div>
+</div>
+<?php endForm(); ?>
+
  <!------------- SECTION PRINCIPALE: affichage de tous les éléments ------------->
+
 <section class="inventorySection">
     <h2 class="sectionTitle">Matériels disponibles</h2>
 
