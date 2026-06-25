@@ -22,6 +22,18 @@
             echo "blablabla";
             $qs = "?view=mes_emprunts";
         break;
+
+        case 'updateUser':
+            $idUser = valider("id");
+            $nom = valider("nom");
+            $contact = valider("contact");
+            $numAppart = valider("numAppart");
+            $score = valider("score");
+
+            updateUser($idUser, $nom, $contact, $numAppart, $score);
+            $qs = "?view=compte";:
+			break;
+
     }
 }
     // Redirection après traitement de la requete

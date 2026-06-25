@@ -39,7 +39,18 @@
         </thead>
 
         <tbody id="body-panier">
-            <?php mkTableBody($userInfo); ?>
+            <?php 
+                foreach ($userInfo as $item) {
+                    mkForm("controleur.php");
+                    echo "<tr>\n";
+                    foreach ($item as $champ => $val) {
+                        if ($champ != "id" && $champ != "role" && $champ != "Score") echo "\t<td> <input type='text' name='$champ' value='$val' placeholder='$val'/>\n</td>\n";
+                    }
+                    echo "</tr>\n";
+                    }
+                    endForm();
+             
+            ?>
         </tbody>
 
     </table>
