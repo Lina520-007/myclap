@@ -31,7 +31,7 @@
  .toggleBtn { 
      background-color: #222222; 
      color: white; 
-     border: 2px solid #E50914; 
+     border: 2px solid #ff0502; 
      border-radius: 50%; 
      width: 30px; 
      height: 30px; 
@@ -39,10 +39,10 @@
      cursor: pointer; 
      margin-top: 8px; 
  } 
- .toggleBtn:hover { background-color: #E50914; } 
+ .toggleBtn:hover { background-color: #ff0502; } 
  .detailsProduct { 
      padding: 10px 15px 15px; 
-     border-top: 2px solid #E50914; 
+     border-top: 2px solid #ff0502; 
      background-color: #161616; 
      color: #d0d0d0; 
  } 
@@ -55,7 +55,7 @@
      display: block; 
      font-weight: bold; 
      margin: 8px 0; 
-     color: #E50914; 
+     color: #ff0502; 
  } 
  .datesPicker { 
      display: flex; 
@@ -73,19 +73,19 @@
      border-radius: 4px; 
      outline: none; 
  } 
- .datesPicker input[type="date"]:focus { border-color: #E50914; } 
+ .datesPicker input[type="date"]:focus { border-color: #ff0502; } 
  .addCartBtn { 
      width: 100%; 
      padding: 10px; 
      background-color: #222222; 
      color: white; 
-     border: 1px solid #E50914; 
+     border: 1px solid #ff0502; 
      cursor: pointer; 
      font-size: 0.9rem; 
      margin-top: 10px; 
      font-family: Arial, sans-serif; 
  } 
- .addCartBtn:hover { background-color: #E50914; } 
+ .addCartBtn:hover { background-color: #ff0502; } 
 
  /* zone filtres */
 .filtersSection {
