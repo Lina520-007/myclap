@@ -1,12 +1,14 @@
 <?php
     include_once("libs/maLibUtils.php");
     include_once("libs/modele.php");
+    include_once("libs/maLibForms.php");
+
     
     redirigerParIndexVers("inventaire");
 
     $articles = listerArticlesDisponibles();
 
-    $userId = 1;
+    $userId = 2;
 ?>
 
 <style>
@@ -77,7 +79,7 @@
                             </label>
                         </div>
 
-                        <input class="ajouterPanierBtn" type="submit" name="Ajouter au panier" value="Ajouter au panier"/>
+                        <input class="ajouterPanierBtn" type="submit" name="action" value="Ajouter au panier"/>
 
                     </div>
 

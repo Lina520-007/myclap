@@ -21,17 +21,25 @@
             break;
 
             case "Ajouter au panier":
-                if(
-                    $userId = valider("userId")
-                    && $id = valider("id")
-                    && $qte = valider("quantite")
-                    && $startDate = valider("dateDebut")
-                    && $endDate = valider("dateFin")
-                ) {
-                    $cart = getUserCart($userId);
-                    if ($cart == false) $cart = createCart($userId); 
+                $required = ["userId", "id", "quantite", "dateDebut", "dateFin"];
 
-                    addToCart($cart, $id, $qte);
+                foreach ($required as $field) {
+                    if (!valider($field)) {
+                        die("Missing field: $field");
+                    }
+                }
+                $userId = valider("userId");
+                $itemId = valider("id");
+                $qte = valider("quantite");
+                $startDate = valider("dateDebut");
+                $endDate = valider("dateFin");
+
+                $cart = getUserCart($userId);
+                var_dump($cart);
+                if ($cart == false) {
+                    $cart = createCart($userId, $startDate, $endDate);
+                    var_dump($cart);
+                    die("BRUH");
                 }
             break;
 

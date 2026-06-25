@@ -22,7 +22,7 @@
     
     // Récupération de l'indentifiant utilisateur
     
-    $idUser = 1;
+    $idUser = 2;
     //$idUser = $_SESSION["idUser"];
 
     // On affiche le panier

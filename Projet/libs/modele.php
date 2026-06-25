@@ -28,16 +28,20 @@
         ON user.id = emprunt.user_id
         WHERE user.id = '$userId'";
         
-        $output = SQLSelect($sql); 
+        $output = SQLSelect($sql);
 
         return ($output == false) ? false : parcoursRs($output);
     }
     
-    function creerPanier() {
+    function createCart($userId, $startDate, $endDate) {
+        $sql = "INSERT INTO emprunt (id, start_date, end_date, return_date, status, user_id) VALUES (NULL, '$startDate', '$endDate', NULL, 'CART', '$userId')";
 
+        SQLInsert($sql);
+
+        return getUserCart($userId);
     }
     
-    function ajouterAuPanier() {
+    function addToCart($cart, $itemId, $qte) {
 
     }
     
