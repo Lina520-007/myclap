@@ -168,6 +168,15 @@ function filtrerEmprunts($filtre) {
 
 }
 
+function listerCategory() {
+    $sql = "SELECT * FROM category";
+    return parcoursRs(SQLSelect($sql));
+}
+
+function listerFavory($userId) {
+    $sql = "SELECT product_id FROM favorite WHERE user_id='$userId'";
+    return parcoursRs(SQLSelect($sql));
+}
 
 
 

@@ -57,3 +57,5 @@ if (isAdmin($idUser)) {
     echo "<a href='index.php?view=admin_gestion' class='actionBtn'>Accéder à la gestion du site</a>";
     echo "</div>";
 }
+
+?>

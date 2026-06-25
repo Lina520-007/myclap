@@ -10,15 +10,19 @@
     <span class="filtersTitle">Filtres :</span>
     
     <div class="dropdown elmtsFilter">
+
         <button class="dropdownBtn"> ▼ Catégories </button>
         <div class="dropdownElmts">
-            <label><input type="checkbox" name="categorie" value="camera"> Caméras</label>  
-            <label><input type="checkbox" name="categorie" value="micro"> Micros</label>
+            <?php foreach (listerCategory() as $category): ?>
+                <label><input type="checkbox" name="categorie" value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></label>
+            <?php endforeach; ?>
         </div>
     </div>
     
     <label class="favCheck elmtsFilter">
-        <input type="checkbox" name="favoris" id="favFilter">Favoris
+        <?php if (isset($_SESSION["idUser"])): ?>
+            <input type="checkbox" name="favoris" id="favFilter">Favoris
+        <?php endif; ?>
     </label>
     
     <div class="dateSelection elmtsFilter">
