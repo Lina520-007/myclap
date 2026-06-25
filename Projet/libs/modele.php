@@ -13,7 +13,7 @@
     }
 
     function listerArticlesDisponibles() {
-        $sql = "SELECT p.id, p.name, p.description, p.bail, ph.url AS photo_url
+        $sql = "SELECT p.id, p.name, p.description, p.bail, p.stock, ph.url AS photo_url
                 FROM product AS p
                 LEFT JOIN product_photo AS ph ON p.id = ph.product_id AND ph.index = 1";
         return parcoursRs(SQLSelect($sql));
