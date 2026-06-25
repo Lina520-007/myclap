@@ -70,8 +70,10 @@
                 <a href="index.php?view=mes_emprunts" class="menuItem <?php if ($view == 'mes_emprunts') echo 'active'; ?>">
                     <span class="ui-icon ui-icon-script"></span> Mes Emprunts
                 </a>
-                
-                <div class="adminSection">
+<?php          
+if if ($_SESSION["isAdmin"] ==false) { 
+          
+               echo' <div class="adminSection">
                     <span class="menuSeparator">Administration</span>
                     <a href="index.php?view=admin_gestion" class="menuItem <?php if ($view == 'admin_gestion') echo 'active'; ?>">
                         <span class="ui-icon ui-icon-wrench"></span> Gestion
@@ -82,7 +84,8 @@
                     <a href="index.php?view=analytics" class="menuItem <?php if ($view == 'analytics') echo 'active'; ?>">
                         <span class="ui-icon ui-icon-signal"></span> Analytics
                     </a>
-                </div>
+                </div>';}
+                ?>
             </nav>
         </aside>
 

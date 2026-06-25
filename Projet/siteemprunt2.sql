@@ -265,7 +265,6 @@ ALTER TABLE `panier_item`
 ALTER TABLE `photos_produit`
   ADD CONSTRAINT `fk_photos_produit` FOREIGN KEY (`produitId`) REFERENCES `produit` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO `photos_produit` (`id`, `produitId`,`ordre`, `url`) VALUES (1, 1, 1, 'ressources/Panasonic_Lumix_S5.jpg'), (2, 2, 1, 'ressources/micro_rode.jpg');
 --
 -- Contraintes pour la table `produit`
 --

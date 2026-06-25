@@ -91,8 +91,7 @@
             case 'afficher les emprunts' :
                 $filtre = isset($_GET['filtre']) ? $_GET['filtre'] : '';
     
-    // Appel à la couche modèle pour récupérer les données triées
-                 $listeEmprunts = getEmpruntsTries($filtre);
+                 $listeEmprunts = TriEmprunt($filtre);
                 $qs = "?view=admin_emprunts";
             break;
 
