@@ -2,61 +2,47 @@
     include_once("libs/maLibUtils.php");
     include_once("libs/modele.php");
     include_once("libs/maLibForms.php");
-    
-    redirigerParIndexVers("mes_emprunts");
-?>
-<h1> Mon compte</h1>
 
-
-<?php
-    /*
-    // Si l'utilisateur n'est pas connecté, on le renvoie vers la page de connection
-    if (!isset($_SESSION["idUser"])) {
-        $url = dirname($_SERVER["PHP_SELF"]) . "/index.php?view=login";
-        header("Location:$url");
-        die();
-    }
-    */
-
-    //$idUser = $_SESSION["idUser"];
-    $idUser =1;
-
-
-    $userInfo = userInfo($idUser);
+    redirigerParIndexVers("compte_modif");
 ?>
 
-<div id="panier"  class="table-wrapper">
+<h1>Mon compte</h1>
 
-    <table class="table-panier">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Contact</th>
-                <th>Numéro d'appartement</th>
-                <th>Score</th>
-            </tr>
-        </thead>
+<div class="accountWrapper">
+    <?php
+        $idUser = 1;
+        $userInfo = userInfo($idUser);
+        $user = $userInfo[0]; 
+        mkForm("controleur.php", "POST");
+    ?>
+        
+        <div class="formGroup">
+            <label for="userName">Nom</label>
+            <input type="text" id="userName" name="name" value="<?= htmlspecialchars($user['name'] ?? '') ?>">
+        </div>
 
-        <tbody id="body-panier">
-            <?php 
-                foreach ($userInfo as $item) {
-                    mkForm("controleur.php","POST");
-                    echo "<tr>\n";
-                    foreach ($item as $champ => $val) {
-                        if ($champ != "id" && $champ != "role"&& $champ != "score") echo "\t<td><input type='text' name='$champ' value='$val'/>\n</td>\n";
-                    }
-                    
-                    }
-            ?>
-        </tbody>
-    </table>
-        <?php 
-        echo "<input type='hidden' name='id' value='$idUser'>\n</tr>\n";
-        mkInput("submit", "action", "Sauvegarder les modifications", "button-primary");
-                    endForm();  
-        ?>
+        <div class="formGroup">
+            <label for="userContact">Contact</label>
+            <input type="text" id="userContact" name="contact" value="<?= htmlspecialchars($user['contact'] ?? '') ?>">
+        </div>
 
-   
-    
+        <div class="formGroup">
+            <label for="flatNumber">Numéro d'appartement</label>
+            <input type="text" id="flatNumber" name="flat_num" value="<?= htmlspecialchars($user['flat_num'] ?? '') ?>">
+        </div>
 
+        <div class="formGroup">
+            <label>Score de confiance</label>
+            <div class="scoreDisplay"><?= htmlspecialchars($user['score'] ?? '0') ?></div>
+        </div>
+
+        <?php mkInput("hidden", "id", $idUser); ?>
+
+        <div class="formActions">
+            <?php mkInput("submit", "action", "Sauvegarder les modifications", "primaryButton"); ?>
+        </div>
+
+    <?php 
+            endForm(); 
+    ?>
 </div>

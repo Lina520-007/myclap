@@ -1,0 +1,61 @@
+
+.accountWrapper {
+    background-color: #1a1a1a;
+    padding: 25px;
+    border: 1px solid #2a2a2a;
+    border-top: 3px solid #E50914; 
+    max-width: 500px;
+    margin: 20px auto; 
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    color: #aaaaaa;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.formGroup input[type="text"] {
+    background-color: #222222;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.formGroup input[type="text"]:focus {
+    border-color: #E50914;
+}
+
+.scoreDisplay {
+    background-color: #111111;
+    padding: 12px;
+    color: #E50914;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 1px solid #333333;
+}
+
+.formActions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.formActions .primaryButton {
+    width: 100%; 
+}
+
+@media (min-width: 768px) {
+    .formActions .primaryButton {
+        width: auto;
+    }
+}

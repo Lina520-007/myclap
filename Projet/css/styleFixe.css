@@ -34,7 +34,7 @@
  } 
 
  .actionBtn .ui-icon { 
-   transform: scale(1.4); 
+   transform: scale(2.4); 
    display: inline-block; 
  } 
 
@@ -93,6 +93,10 @@
    position: absolute; 
    right: 25px; /* Pour repositionner la loupe à l'intérieur du champ textuel */ 
  } 
+
+ .searchBtn .ui-icon{
+  transform: scale(2.5);
+ }
 
 /*sideBar*/
 /* 1. On force la barre et le contenu à être côte à côte tout le temps */
