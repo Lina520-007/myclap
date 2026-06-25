@@ -13,7 +13,15 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+=======
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
+>>>>>>> Stashed changes
+=======
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
+>>>>>>> Stashed changes
 
 <style>
 
@@ -76,6 +84,8 @@
                         
                         <!-- Trouver les dates disponibles à partir de la quantité souhaitée -->
                         <?php 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
                             $minDate = "";
 
                             $itemId = $article["id"];
@@ -89,10 +99,45 @@
                             }
                             
                         ?>
+=======
+=======
+>>>>>>> Stashed changes
+                            // On liste les emprunts qui concerne l'article
+                            $itemId = $article["id"];
+                            $emprunts = getEmpruntsWithItem($itemId, 0);
+                            echo "$itemId\n";
+                            $availableDatesTab = array();
+
+                            if ($emprunts !== []) {
+                                $availableDatesTab = null;
+                                echo "pas d'emprunts\n";
+                            }
+                            else {
+                                echo "emprunts détéctés\n";
+                                $stockTab = createStockTable($article, $emprunts);
+
+                                // On détermine les date disponibles en fonction de la quantité souhaitée
+                                foreach ($stockTab as $date => $stock) {
+                                    if ($stock >= $qte) $availableDatesTab[] = $date;
+                                }
+                            }
+                        ?>
+
+                        <script> 
+                            const availableDates = <?= json_encode($availableDatesTab) ?>; 
+                            flatpickr("#dateDebut", {
+                                dateFormat: "Y-m-d",
+                                enable: availableDates
+                            });
+                        </script>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
                         <div class="datesPicker">
                             <label>
-                                Début : <input type="date" name="dateDebut" min="2026-01-01" max="2026-12-31">
+                                Début : <input type="date" name="dateDebut">
                             </label>
                             <label>
                                 Fin : <input type="date" name="dateFin">

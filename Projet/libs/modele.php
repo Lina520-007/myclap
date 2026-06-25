@@ -20,6 +20,51 @@
         return parcoursRs(SQLSelect($sql));
     }
 
+    function getEmpruntsWithItem($itemId, $userId) {
+        $sql = "SELECT start_date, end_date, quantity
+            FROM emprunt_item
+            WHERE product_id = '$itemId'";
+        
+        $bru = SQLSelect($sql);
+
+        return parcoursRs(SQLSelect($sql));
+    }
+    /**
+     * @param array $product
+     * @param array $emprunts
+     * @param string $dateInterval
+     */
+    function createStockTable($product, $empruntItems, $dateInterval = "60") {
+        // Tableau qui va stocker la quantité disponible associée à chaque jour
+        $stockTab = array();
+        
+        // On itère sur les jours
+        // Aujourd'hui
+        $currentDate = new DateTime();              
+
+        // Date maximale de réservation
+        $interval = new DateInterval("P" . $dateInterval . "D");       // P = Period, 60 Days
+        $maxDate = (clone $currentDate)->add($interval);
+
+        // Période entre les deux
+        $interval = new DateInterval("P1D");        // 1 jour
+        $periode = new DatePeriod($currentDate, $interval, $maxDate, DatePeriod::INCLUDE_END_DATE);
+
+        foreach ($periode as $date) {
+            $stock = $product["stock"];
+
+            foreach ($empruntItems as $emprunt) {
+                $startDate = new DateTime($emprunt["start_date"]);
+                $endDate = new DateTime($emprunt["end_date"]);
+                if ($startDate <= $date && $date <= $endDate) $stock -= $emprunt["quantity"];
+            }
+            $key = $date->format("Y-m-d");
+            $stockTab["$key"] = $stock;
+        }
+
+        return $stockTab;
+    }
+
     // PANIER ET EMPRUNTS --------------------------------------------------------------------------------------------------------------------------------
     function getUserCart($userId) {
         $sql = "SELECT emprunt.id
