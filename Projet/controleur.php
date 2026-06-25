@@ -20,6 +20,21 @@
                 die(); 
             break;
 
+            case "Ajouter au panier":
+                if(
+                    $userId = valider("userId")
+                    && $id = valider("id")
+                    && $qte = valider("quantite")
+                    && $startDate = valider("dateDebut")
+                    && $endDate = valider("dateFin")
+                ) {
+                    $cart = getUserCart($userId);
+                    if ($cart == false) $cart = createCart($userId); 
+
+                    addToCart($cart, $id, $qte);
+                }
+            break;
+
             case "Reserver":
                 // Met à jour le statut du panier à PENDING
                 if ($cartId = valider("cartId", "POST")) {
