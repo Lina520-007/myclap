@@ -124,9 +124,9 @@ function endForm()
 	echo "</form>\n";
 }
 
-function mkInput($type,$name,$value="")
+function mkInput($type,$name,$value="",$class="")
 {
-	echo "<input type=\"$type\" name=\"$name\" value=\"$value\"/>\n";
+	echo "<input type=\"$type\" name=\"$name\" value=\"$value\" class='$class'/>\n";
 }
 
 function mkRadioCb($type,$name,$value,$checked=false)

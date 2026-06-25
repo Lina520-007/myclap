@@ -68,17 +68,26 @@
         
         return SQLUpdate($sql);
     }
+
+
     function isAdmin($idUser)
-{
-	$SQL = "SELECT role FROM user WHERE id='$idUser' and role=1"; 
-	return SQLGetChamp($SQL);
-	// vérifie si l'utilisateur est un administrateur
-}
+    {
+        $SQL = "SELECT role FROM user WHERE id='$idUser' and role=1"; 
+        return SQLGetChamp($SQL);
+        // vérifie si l'utilisateur est un administrateur
+    }
 
 
 function ajouterUtilisateur($nom, $contact, $passe ){
     $SQL= "INSERT INTO user(name, contact, password,) VALUES ('$nom','$contact','$passe') ";
     return SQLInsert($SQL);
+}
+
+function updateUser($idUser, $nom, $contact, $numAppart, $score) {
+    $SQL = "UPDATE user 
+        SET name='$nom', contact='$contact', flat_num='$numAppart', score='$score' 
+        WHERE id='$idUser'";
+    return SQLUpdate($SQL);
 }
 
 

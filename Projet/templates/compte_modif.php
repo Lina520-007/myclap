@@ -28,7 +28,6 @@
 <div id="panier"  class="table-wrapper">
 
     <table class="table-panier">
-
         <thead>
             <tr>
                 <th>Nom</th>
@@ -41,25 +40,23 @@
         <tbody id="body-panier">
             <?php 
                 foreach ($userInfo as $item) {
-                    mkForm("controleur.php");
+                    mkForm("controleur.php","POST");
                     echo "<tr>\n";
                     foreach ($item as $champ => $val) {
-                        if ($champ != "id" && $champ != "role" && $champ != "Score") echo "\t<td> <input type='text' name='$champ' value='$val' placeholder='$val'/>\n</td>\n";
+                        if ($champ != "id" && $champ != "role"&& $champ != "score") echo "\t<td><input type='text' name='$champ' value='$val'/>\n</td>\n";
                     }
-                    echo "</tr>\n";
+                    
                     }
-                    endForm();
-             
             ?>
         </tbody>
-
     </table>
+        <?php 
+        echo "<input type='hidden' name='id' value='$idUser'>\n</tr>\n";
+        mkInput("submit", "action", "Sauvegarder les modifications", "button-primary");
+                    endForm();  
+        ?>
+
+   
     
 
-</div>
-
-<div style="display: flex; justify-content: flex-end; margin-top: 30px;margin-right: 20px;">
-    <a href="index.php?view=compte" class="actionBtn">
-        <span class="ui-icon ui-icon-circle-check"></span>
-    </a>
 </div>

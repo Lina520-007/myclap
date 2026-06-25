@@ -23,7 +23,7 @@
     */
 
     //$idUser = $_SESSION["idUser"];
-    $idUser =1;
+    $idUser = 1;
 
 
     $userInfo = userInfo($idUser);
@@ -49,3 +49,11 @@
     </table>
 
 </div>
+
+<?php
+
+if (isAdmin($idUser)) {
+    echo "<div style='margin-top: 20px;'>";
+    echo "<a href='index.php?view=admin_gestion' class='actionBtn'>Accéder à la gestion du site</a>";
+    echo "</div>";
+}

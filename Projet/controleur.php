@@ -23,15 +23,16 @@
             $qs = "?view=mes_emprunts";
         break;
 
-        case 'updateUser':
+        case 'Sauvegarder les modifications':
             $idUser = valider("id");
-            $nom = valider("nom");
+            $name = valider("name");
             $contact = valider("contact");
-            $numAppart = valider("numAppart");
+            $flat_num = valider("flat_num");
             $score = valider("score");
 
-            updateUser($idUser, $nom, $contact, $numAppart, $score);
-            $qs = "?view=compte";:
+            updateUser($idUser, $name, $contact, $flat_num, $score);
+            echo userInfo($idUser);
+            $qs = "?view=compte";
 			break;
 
     }
