@@ -1,6 +1,7 @@
 <?php
     include_once("libs/maLibSQL.pdo.php");
 
+    // INVENTAIRE ----------------------------------------------------------------------------------------------------------------------------------------
     function rechercherMateriel($recherche) {
         $recherche = addslashes($recherche);
         
@@ -19,6 +20,27 @@
         return parcoursRs(SQLSelect($sql));
     }
 
+    // PANIER ET EMPRUNTS --------------------------------------------------------------------------------------------------------------------------------
+    function getUserCart($userId) {
+        $sql = "SELECT emprunt.id
+        FROM user
+        JOIN emprunt
+        ON user.id = emprunt.user_id
+        WHERE user.id = '$userId'";
+        
+        $output = SQLSelect($sql); 
+
+        return ($output == false) ? false : parcoursRs($output);
+    }
+    
+    function creerPanier() {
+
+    }
+    
+    function ajouterAuPanier() {
+
+    }
+    
     /**
      * Affiche les éléments du panier d'un utilisateur
      * @param int $userId
@@ -55,6 +77,7 @@
         return parcoursRs(SQLSelect($sql));
     }
 
+    // ENZO ----------------------------------------------------------------------------------------------------------------------------------------------
     
     function listerUtilisateurs($tri = "tout") {
     $SQL = "SELECT name, contact, role, id, flat_num, score FROM user ORDER BY id DESC";

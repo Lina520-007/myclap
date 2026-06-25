@@ -5,6 +5,8 @@
     redirigerParIndexVers("inventaire");
 
     $articles = listerArticlesDisponibles();
+
+    $userId = 1;
 ?>
 
 <style>
@@ -29,6 +31,7 @@
 
             <div class="produit-card">
 
+                <!-- HEADER -->
                 <div class="produit-header">
 
                     <img src="<?= $article['photo_url'] ?? 'ressources/myclap.png' ?>" alt="<?= htmlspecialchars($article['name']) ?>"/>
@@ -39,9 +42,11 @@
 
                 </div>
 
+                <!-- DESCRIPTION -->
                 <form action="controleur.php" method="POST">
 
-                    <?php mkInput("hidden", $article["id"]) ?>
+                    <?php mkInput("hidden", "userId",$userId) ?>
+                    <?php mkInput("hidden", "id",$article["id"]) ?>
 
                     <div class="produit-details">
 
