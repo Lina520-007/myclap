@@ -9,7 +9,7 @@ mkForm("controleur.php");
 echo "nom complet : ";
 mkInput("text", "nom");
 echo "<br/>  mot de passe : ";
-mkInput("text", "passe");
+mkInput("password", "passe");
 echo "<br/>";
 mkInput("submit", "action", "Se connecter");
 
