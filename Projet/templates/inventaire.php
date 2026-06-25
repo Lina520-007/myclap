@@ -57,7 +57,6 @@ mkInput("submit", "action", "Appliquer les filtres", "button-primary");
 ?>
 </div>
 </div>
-</div>
 <?php endForm(); ?>
 
  <!------------- SECTION PRINCIPALE: affichage de tous les éléments ------------->
