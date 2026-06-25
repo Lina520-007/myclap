@@ -11,6 +11,10 @@
     $userId = 2;
 ?>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <style>
 
     .produit-details {
@@ -33,7 +37,7 @@
 
             <div class="produit-card">
 
-                <!-- HEADER -->
+                <!----------------------------------------------- CARD HEAD ----------------------------------------------->
                 <div class="produit-header">
 
                     <img src="<?= $article['photo_url'] ?? 'ressources/myclap.png' ?>" alt="<?= htmlspecialchars($article['name']) ?>"/>
@@ -44,7 +48,7 @@
 
                 </div>
 
-                <!-- DESCRIPTION -->
+                <!----------------------------------------------- CARD BODY ----------------------------------------------->
                 <form action="controleur.php" method="POST">
 
                     <?php mkInput("hidden", "userId",$userId) ?>
@@ -69,6 +73,22 @@
                                 ?>
                             </select>
                         </div>
+                        
+                        <!-- Trouver les dates disponibles à partir de la quantité souhaitée -->
+                        <?php 
+                            $minDate = "";
+
+                            $itemId = $article["id"];
+                            $emprunts = getEmpruntWithItem($itemId);
+                            $available = 0;
+
+                            while ($available < $qte) {
+                                foreach ($emprunts as $emprunt) {
+
+                                }
+                            }
+                            
+                        ?>
 
                         <div class="datesPicker">
                             <label>
