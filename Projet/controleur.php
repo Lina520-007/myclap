@@ -58,7 +58,7 @@
                 $name = valider("name");
                 $contact = valider("contact");
                 $flat_num = valider("flat_num");
-                $score = valider("score");
+                $score = valider("score") ? valider("score") : 0; 
 
                 updateUser($idUser, $name, $contact, $flat_num, $score);
                 echo userInfo($idUser);

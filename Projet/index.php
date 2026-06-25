@@ -25,6 +25,7 @@
     <link href="css/styleFixe.css" rel="stylesheet">
     <link href="css/styleInventaire.css" rel="stylesheet">
     <link href="css/styleTableaux.css" rel="stylesheet">
+    <link href="css/styleModifCompte.css" rel="stylesheet">
 </head>
 
  <!------------------------------- BODY ------------------------------->
