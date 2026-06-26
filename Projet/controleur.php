@@ -160,6 +160,23 @@
                 $qs = "?view=admin_emprunts&filtre=$filtre&action=afficher+les+emprunts";
                 break;
 
+            case 'Appliquer les filtres':
+            $categorie = isset($_POST["categorie"]) ? $_POST["categorie"] : null;
+            $Date      = valider("Date", "POST");
+            $favoris   = valider("favoris", "POST");
+
+            $qs = "?view=inventaire";
+            if ($categorie) {
+                foreach ($categorie as $cat) {
+                    $qs .= "&categorie[]=" . $cat;
+                }
+            }
+            if ($Date)    $qs .= "&Date=" . $Date;
+            if ($favoris) $qs .= "&favoris=" .$favoris;
+            break;
+
+
+
     }
 
 }

@@ -133,7 +133,6 @@ function mkTable($tabData,$listeChamps=false)
 
 function mkSelect($nomChampSelect, $tabData,$champValue, $champLabel,$selected=false,$champLabel2=false)
 {
-
 	$multiple=""; 
 	if (preg_match('/.*\[\]$/',$nomChampSelect)) $multiple =" multiple =\"multiple\" ";
 
@@ -193,7 +192,18 @@ function mkLiens($tabData,$champLabel, $champCible, $urlBase=false, $nomCible=""
 	
 	}
 }
-?>
+
+function mkCalendar($name, $selectedDate=false, $minDate=false, $maxDate=false)
+{
+	echo 
+	"<div class='dateSelection elmtsFilter'>
+    <input type='date' id='filtreDate' name='$name' value='$selectedDate' min='$minDate' max='$maxDate' />
+   	</div>";
+	
+}
+
+
+
 
 
 

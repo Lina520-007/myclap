@@ -1,12 +1,27 @@
 <?php
     include_once("libs/maLibUtils.php");
+    include_once("libs/maLibForms.php");    
     include_once("libs/modele.php");
     include_once("libs/maLibForms.php");
 
     redirigerParIndexVers("inventaire");
+/*
+    // Si l'utilisateur n'est pas connecté, on le renvoie vers la page de connection
+    if (!isset($_SESSION["idUser"])) {
+        $url = dirname($_SERVER["PHP_SELF"]) . "/index.php?view=login";
+        header("Location:$url");
+        die();
+    }
+    */
 
     $articles = listerArticlesDisponibles();
+    //$idUser = $_SESSION["idUser"];
     $userId = 2;
+    $categorie = isset($_GET["categorie"]) ? $_GET["categorie"] : null;
+    $date      = valider("Date", "GET");
+    $favoris   = valider("favoris", "GET");
+    $articles  = listerArticlesDisponibles($categorie, $date, $favoris, $userId);
+    
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -21,6 +36,41 @@
         display: block;
     }
 </style>
+<!-------------Filtres----->
+<section class="filtersSection">
+    <?php mkForm("controleur.php", "POST"); ?>
+
+    <span class="filtersTitle">Filtres :</span>
+
+    <div class="dropdown elmtsFilter">
+        <button class="dropdownBtn" type="button">▼ Catégories</button>
+        <div class="dropdownElmts">
+            <?php foreach (listerCategory() as $category): ?>
+                <label><input type="checkbox" name="categorie[]" value="<?= $category['id'] ?>"><?php echo htmlspecialchars($category['name']) ?></label>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="elmtsFilter">
+        <?php 
+        if (isset($_SESSION["idUser"])) {
+            mkRadioCb("checkbox", "favoris", "1");
+            echo "Favoris";
+        }
+        ?>
+    </div>
+
+    <div class="elmtsFilter dateSelection">
+        <span>Disponible à partir de :</span>
+        <?php mkCalendar("Date"); ?>
+    </div>
+
+    <?php mkInput("submit", "action", "Appliquer les filtres", "button-primary"); ?>
+    <?php endForm(); ?>
+</section>
+
+<!------------- SECTION PRINCIPALE: affichage de tous les éléments ------------->
+
 
 <section class="inventorySection">
 
@@ -198,10 +248,15 @@
                                name="action"
                                value="Ajouter au panier"/>
 
+                    <div class="datesPicker">
+                        <label>Début : <input type="date" name="startDate"></label>
+                        <label>Fin : <input type="date" name="endDate"></label>
                     </div>
 
-                </form>
-
+                    <button class="addCartBtn" data-id="<?= $article['id'] ?>">
+                        Ajouter au panier
+                    </button>
+                </div>
             </div>
 
         <?php endforeach; ?>
@@ -232,4 +287,19 @@
         });
     });
 
+const dropdown = document.querySelector('.dropdown');
+const dropdownBtn = document.querySelector('.dropdownBtn');
+
+dropdownBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+});
+
+document.addEventListener('click', function() {
+    dropdown.classList.remove('open');
+});
+
+document.querySelector('.dropdownElmts').addEventListener('click', function(e) {
+    e.stopPropagation();
+});
 </script>

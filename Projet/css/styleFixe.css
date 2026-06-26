@@ -39,7 +39,7 @@
  } 
 
  .nbEmprunts { 
-   background-color: #E50914; 
+   background-color: #ff0502; 
    color: white; 
    font-size: 0.6rem; 
    padding: 2px 4px; 
@@ -94,6 +94,7 @@
    right: 25px; /* Pour repositionner la loupe à l'intérieur du champ textuel */ 
  } 
 
+ /*Ecran de taille>=768px */ 
  .searchBtn .ui-icon{
   transform: scale(2.5);
  }
