@@ -8,6 +8,11 @@
 	include_once("libs/maLibUtils.php");
 
 	$view = valider("view"); 
+
+	if (($view == 'compte' || $view == 'compte_modif') && !isset($_SESSION["idUser"])) {
+		header("Location: index.php?view=login");
+		exit;
+	}
 ?>
 
 <!doctype html>
@@ -26,6 +31,7 @@
     <link href="css/styleInventaire.css" rel="stylesheet">
     <link href="css/styleTableaux.css" rel="stylesheet">
     <link href="css/styleModifCompte.css" rel="stylesheet">
+     <link href="css/styleInv.css" rel="stylesheet">
 </head>
 
  <!------------------------------- BODY ------------------------------->
@@ -54,7 +60,7 @@
                 <span class="nbEmprunts">0</span>
             </a>
             
-            <a href="index.php?view=compte" class="actionBtn">
+            <a href="<?php echo isset($_SESSION['idUser']) ? 'index.php?view=compte' : 'index.php?view=login'; ?>" class="actionBtn">
                 <span class="ui-icon ui-icon-person"></span>
             </a>
             
@@ -79,17 +85,26 @@
                 <a href="index.php?view=mes_emprunts" class="menuItem <?php if ($view == 'mes_emprunts') echo 'active'; ?>">
                     <span class="ui-icon ui-icon-script"></span> Mes Emprunts
                 </a>
-                
-                <div class="adminSection">
+
+                <?php 
+if (isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"] == true) :
+    /*$nbAttente = nombreEmpruntsEnAttente(); */  ?>
+    <div class="adminSection">
                     <span class="menuSeparator"> Administration </span>
-                    <a href="index.php?view=admin_gestion" class="menuItem <?php if ($view == 'admin_gestion') echo 'active'; ?>">
+                    
+                    <a href="index.php?view=admin_gestion" class="menuItem <?php if ($view == "admin_gestion") echo "active"; ?>">
                         <span class="ui-icon ui-icon-wrench"></span> Gestion
                     </a>
-                    <a href="index.php?view=admin_emprunts" class="menuItem <?php if ($view == 'admin_emprunts') echo 'active'; ?>">
+                    
+                    <a href="index.php?view=admin_emprunts" class="menuItem <?php if ($view == "admin_emprunts") echo "active"; ?>">
                         <span class="ui-icon ui-icon-document"></span> Emprunts global
+                        
+                        
                     </a>
-                   
+                    
+                
                 </div>
+                <?php endif; ?>
             </nav>
         </aside>
 
@@ -119,6 +134,7 @@
 						include("templates/panier.php");
 					break;
 					
+
 					case "admin_gestion" : 
 						include("templates/admin_gestion.php");
 					break;

@@ -25,9 +25,14 @@ tableaux, formulaires, ...
 // Exemple d'appel :  mkLigneEntete($data,array('pseudo', 'couleur', 'connecte'));
 function mkLigneEntete($tabAsso,$listeChamps=false)
 {
+	// Fonction appelée dans mkTable, produit une ligne d'entête
+	// contenant les noms des champs à afficher dans mkTable
+	// Les champs à afficher sont définis à partir de la liste listeChamps 
+	// si elle est fournie ou du tableau tabAsso
 
-	if (!$listeChamps)
+	if (!$listeChamps)	// listeChamps est faux  : on utilise le not : '!'
 	{
+		// tabAsso est un tableau associatif dont on affiche TOUTES LES CLES
 		echo "\t<tr>\n";
 		foreach ($tabAsso as $cle => $val)	
 		{
@@ -35,7 +40,7 @@ function mkLigneEntete($tabAsso,$listeChamps=false)
 		}
 		echo "\t</tr>\n";
 	}
-	else
+	else		// Les noms des champs sont dans $listeChamps 	
 	{
 		echo "\t<tr>\n";
 		foreach ($listeChamps as $nomChamp)	
@@ -46,27 +51,58 @@ function mkLigneEntete($tabAsso,$listeChamps=false)
 	}
 }
 
+
 function mkLigne($tabAsso,$listeChamps=false)
 {
-	if (!$listeChamps)
+	// Fonction appelée dans mkTable, produit une ligne 	
+	// contenant les valeurs des champs à afficher dans mkTable
+	// Les champs à afficher sont définis à partir de la liste listeChamps 
+	// si elle est fournie ou du tableau tabAsso
+
+	if (!$listeChamps)	// listeChamps est faux  : on utilise le not : '!'
 	{
+		// tabAsso est un tableau associatif
 		echo "\t<tr>\n";
-		foreach ($tabAsso as $cle => $val)	
+		foreach ($tabAsso as $cle => $val)	//
 		{
-			echo "\t\t<td>$val</td>\n";
+			if (is_array($val)) {
+                echo "\t\t<td><ul>\n";
+                foreach ($val as $item) {
+                  
+                    if (isset($item['nom']) && isset($item['quantite'])) {
+                        echo "\t\t\t<li>" . $item['nom'] . " (x" . $item['quantite'] . ")</li>\n";
+                    } 
+                }
+                echo "\t\t</ul></td>\n";
+            } else {
+                echo "\t\t<td>$val</td>\n";
+            }
 		}
 		echo "\t</tr>\n";
 	}
-	else
-	{
-		echo "\t<tr>\n";
+	else	// les champs à afficher sont dans $listeChamps
+	{echo "\t<tr>\n";
 		foreach ($listeChamps as $nomChamp)	
 		{
-			echo "\t\t<td>$tabAsso[$nomChamp]</td>\n";
+            $val = $tabAsso[$nomChamp];
+            
+           
+            if (is_array($val)) {
+                echo "\t\t<td><ul>\n";
+                foreach ($val as $item) {
+                    if (isset($item['nom']) && isset($item['quantite'])) {
+                        echo "\t\t\t<li>" . $item['nom'] . " (x" . $item['quantite'] . ")</li>\n";
+                    } 
+                }
+                echo "\t\t</ul></td>\n";
+            } else {
+			    echo "\t\t<td>$val</td>\n";
+            }
 		}
 		echo "\t</tr>\n";
 	}
 }
+
 function mkTable($tabData,$listeChamps=false)
 {
 

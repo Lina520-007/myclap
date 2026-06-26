@@ -242,11 +242,140 @@ function listerUtilisateursEtEmprunts() {
     return $utilisateurs;
 }
 
-function filtrerEmprunts($filtre) {
+function TriEmprunt($filtre = '') {
+    $sql = "SELECT e.id, e.start_date, e.end_date, e.return_date, e.status, u.name AS nom_utilisateur 
+            FROM emprunt e 
+            LEFT JOIN user u ON e.user_id = u.id";
+    switch ($filtre) {
+        case 'statut':
+            $sql .= " ORDER BY e.status ASC";
+            break;
+        case 'utilisateurs':
+            $sql .= " ORDER BY u.name ASC";
+            break;
+        default: 
+            $sql .= " ORDER BY e.id DESC"; 
+            break;
+    }
+    return parcoursRs(SQLSelect($sql));
+}
 
+function listerEmpruntsStatut($statut) {
+    
+    $statutsPossibles = ['CART', 'PENDING', 'VALIDATED', 'RETRIEVED', 'RETURNED'];
+    $SQL = "SELECT e.id, e.start_date, e.end_date, e.return_date, e.status, u.name AS nom_utilisateur,p.id AS product_id, p.name AS product_name, ei.quantity
+            FROM emprunt e
+            LEFT JOIN user u ON e.user_id = u.id
+            LEFT JOIN emprunt_item ei ON e.id = ei.emprunt_id
+            LEFT JOIN product p ON ei.product_id = p.id WHERE e.status = '$statut'
+            ORDER BY e.start_date DESC";
+    $listeEmprunts = parcoursRs(SQLSelect($SQL));
+    $empruntsGroupes = [];
+
+    foreach ($listeEmprunts as $ligne) {
+        $idEmprunt = $ligne['id'];
+        if (!isset($empruntsGroupes[$idEmprunt])) {
+            $empruntsGroupes[$idEmprunt] = [
+                'id' => $ligne['id'],
+                'start_date' => $ligne['start_date'],
+                'end_date' => $ligne['end_date'],
+                'return_date' => $ligne['return_date'],
+                'status' => $ligne['status'],
+                'nom_utilisateur' => $ligne['nom_utilisateur'],
+                'produits' => [] 
+            ];}
+
+        if ($ligne['product_id'] !== null) {
+            $empruntsGroupes[$idEmprunt]['produits'][] = [
+                'id' => $ligne['product_id'],
+                'nom' => $ligne['product_name'],
+                'quantite' => $ligne['quantity']
+            ];}
+    }
+    return array_values($empruntsGroupes);
+}
+function changerStatutEmprunt($idEmprunt,$nouveauStatut){
+    $SQL = "UPDATE emprunt SET status = '$nouveauStatut' WHERE id = $idEmprunt";   
+    return SQLUpdate($SQL);           
+}
+function listerEmpruntsUtilisateurs() {
+
+    $SQL = "SELECT  u.id AS user_id, u.name AS nom_utilisateur, u.contact, e.id AS emprunt_id, e.start_date, e.end_date, e.return_date, e.status,p.id AS product_id, p.name AS product_name, ei.quantity FROM user u 
+            INNER JOIN emprunt e ON u.id = e.user_id 
+            LEFT JOIN emprunt_item ei ON e.id = ei.emprunt_id
+            LEFT JOIN product p ON ei.product_id = p.id
+            ORDER BY u.name ASC, e.start_date DESC";
+
+    $listeEmprunts = parcoursRs(SQLSelect($SQL));
+    $empruntsGroupes = [];
+    foreach ( $listeEmprunts as $ligne) {
+        $idEmprunt = $ligne['emprunt_id'];
+        if (!isset($empruntsGroupes[$idEmprunt])) {
+            $empruntsGroupes[$idEmprunt] = [
+                'user_id' => $ligne['user_id'],
+                'nom_utilisateur' => $ligne['nom_utilisateur'],
+                'contact' => $ligne['contact'],
+                'emprunt_id' => $ligne['emprunt_id'], 
+                'start_date' => $ligne['start_date'],
+                'end_date' => $ligne['end_date'],
+                'return_date' => $ligne['return_date'],
+                'status' => $ligne['status'],
+                'produits' => []
+            ];
+        }
+
+        if ($ligne['product_id'] !== null) {
+            $empruntsGroupes[$idEmprunt]['produits'][] = [
+                'id' => $ligne['product_id'],
+                'nom' => $ligne['product_name'],
+                'quantite' => $ligne['quantity']
+            ];
+        }
+    }
+
+    return array_values($empruntsGroupes);
+}
+function nombreEmpruntsEnAttente() {
+    
+    $SQL = "SELECT COUNT(*) FROM emprunt WHERE status = 'PENDING'";
+    
+   return SQLGetChamp($SQL);
+}
+
+function ajouterProduitEtPhoto($name, $description, $categoryId, $bail, $stock, $photoUrl) {
+   
+    $categoryId = (int)$categoryId;
+    $bail = (float)$bail;
+    $stock = (int)$stock;
+
+
+    $sqlProduit = "INSERT INTO product (name, description, category_id, bail, stock) VALUES ('$name', '$description', $categoryId, $bail, $stock)";
+                   
+    $idProduit = SQLInsert($sqlProduit);
+    if ($idProduit !== false && !empty($photoUrl)) {  
+        $sqlPhoto = "INSERT INTO product_photo (url, product_id, `index`) VALUES ('$photoUrl', $idProduit, 0)";            
+        SQLInsert($sqlPhoto); }  
+    return $idProduit;
+
+
+   
+}
+
+
+function listerCategories() {
+    $SQL = "SELECT id, name FROM category ORDER BY name ASC";
+    return parcoursRs(SQLSelect($SQL));
 }
 
 
 
+
+function listerMateriel() {
+    $SQL = "SELECT  p.name AS Nom,  p.stock AS Quantite, p.description AS Description, p.bail AS Caution, pp.url AS Photo FROM product p
+            LEFT JOIN product_photo pp ON p.id = pp.product_id AND pp.`index` = 0
+            ORDER BY p.name ASC";
+                     
+    return parcoursRs(SQLSelect($SQL));
+}
 
 ?>
