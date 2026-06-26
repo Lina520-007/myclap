@@ -13,12 +13,44 @@
         return parcoursRs(SQLSelect($sql)); 
     }
 
-    function listerArticlesDisponibles() {
-        $sql = "SELECT p.id, p.name, p.description, p.bail, p.stock, ph.url AS photo_url
-                FROM product AS p
-                LEFT JOIN product_photo AS ph ON p.id = ph.product_id AND ph.index = 1";
-        return parcoursRs(SQLSelect($sql));
+    function listerArticlesDisponibles($categorie = null, $date = null, $favoris = null, $userId = null) {
+    $sql = "SELECT p.id, p.name, p.description, p.bail, p.stock, ph.url AS photo_url
+            FROM product AS p
+            LEFT JOIN product_photo AS ph ON p.id = ph.product_id AND ph.index = 1";
+
+    $conditions = [];
+
+   if ($categorie) {
+    $categorie = (array) $categorie;
+    $in = "";
+    foreach ($categorie as $cat) {
+        $in .= $cat . ",";
     }
+    $in = rtrim($in, ",");
+    $conditions[] = "p.category_id IN ($in)";
+}
+
+    if ($date) {
+        $conditions[] = "p.id NOT IN (
+            SELECT product_id FROM emprunt
+            WHERE '$date' BETWEEN date_debut AND date_fin
+            AND statut != 'CANCELLED'
+        )";
+    }
+
+    if ($favoris && $userId) {
+        $conditions[] = "p.id IN (
+            SELECT product_id FROM favoris
+            WHERE user_id = $userId
+        )";
+    }
+
+    if (!empty($conditions)) {
+        $sql .= " WHERE " . implode(" AND ", $conditions);
+    }
+
+    return parcoursRs(SQLSelect($sql));
+}
 
     // PANIER ET EMPRUNTS --------------------------------------------------------------------------------------------------------------------------------
     function getUserCart($userId) {

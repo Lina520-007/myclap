@@ -66,21 +66,18 @@
             break;
 
             case 'Appliquer les filtres':
-                $categorie = valider("categorie", "POST");
-                $Date = valider("Date", "POST");
-                $favoris = valider("favoris", "POST");
+            $categorie = isset($_POST["categorie"]) ? $_POST["categorie"] : null;
+            $Date      = valider("Date", "POST");
+            $favoris   = valider("favoris", "POST");
 
-                $qs = "?view=inventaire";
-                if ($categorie) {
-                    $qs .= "&categorie=" . urlencode($categorie);
+            $qs = "?view=inventaire";
+            if ($categorie) {
+                foreach ($categorie as $cat) {
+                    $qs .= "&categorie[]=" . $cat;
                 }
-                if ($Date) {
-                    $qs .= "&Date=" . urlencode($Date);
-                }
-                if ($favoris) {
-                    $qs .= "&favoris=" . urlencode($favoris);
-                }
-
+            }
+            if ($Date)    $qs .= "&Date=" . $Date;
+            if ($favoris) $qs .= "&favoris=" .$favoris;
             break;
 
 

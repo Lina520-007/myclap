@@ -6,10 +6,22 @@
 
     
     redirigerParIndexVers("inventaire");
+/*
+    // Si l'utilisateur n'est pas connecté, on le renvoie vers la page de connection
+    if (!isset($_SESSION["idUser"])) {
+        $url = dirname($_SERVER["PHP_SELF"]) . "/index.php?view=login";
+        header("Location:$url");
+        die();
+    }
+    */
 
-    $articles = listerArticlesDisponibles();
-
+    //$idUser = $_SESSION["idUser"];
     $userId = 2;
+    $categorie = isset($_GET["categorie"]) ? $_GET["categorie"] : null;
+    $date      = valider("Date", "GET");
+    $favoris   = valider("favoris", "GET");
+    $articles  = listerArticlesDisponibles($categorie, $date, $favoris, $userId);
+    
 ?>
 
 <!-------------Filtres----->
@@ -22,7 +34,7 @@
         <button class="dropdownBtn" type="button">▼ Catégories</button>
         <div class="dropdownElmts">
             <?php foreach (listerCategory() as $category): ?>
-                <label><input type="checkbox" name="categorie" value="<?= $category['id'] ?>"><?php echo htmlspecialchars($category['name']) ?></label>
+                <label><input type="checkbox" name="categorie[]" value="<?= $category['id'] ?>"><?php echo htmlspecialchars($category['name']) ?></label>
             <?php endforeach; ?>
         </div>
     </div>
