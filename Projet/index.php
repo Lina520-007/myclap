@@ -88,9 +88,7 @@
                     <a href="index.php?view=admin_emprunts" class="menuItem <?php if ($view == 'admin_emprunts') echo 'active'; ?>">
                         <span class="ui-icon ui-icon-document"></span> Emprunts global
                     </a>
-                    <a href="index.php?view=analytics" class="menuItem <?php if ($view == 'analytics') echo 'active'; ?>">
-                        <span class="ui-icon ui-icon-signal"></span> Analytics
-                    </a>
+                   
                 </div>
             </nav>
         </aside>
