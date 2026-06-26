@@ -1,9 +1,12 @@
 <?php 
 
+
 include_once("libs/modele.php"); // listes
 include_once("libs/maLibUtils.php");// tprint
 include_once("libs/maLibForms.php");// mkTable, mkLiens, mkSelect ...
 include_once("libs/maLibSecurisation.php");
+$msg = valider('msg');
+echo'<p style="color: red; font-weight: bold;">'. $msg  .'</p>';
 
 echo "<h2> Connexion </h2>";
 mkForm("controleur.php");

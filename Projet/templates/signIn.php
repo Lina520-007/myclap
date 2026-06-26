@@ -6,26 +6,29 @@ include_once("libs/modele.php"); // listes
 include_once("libs/maLibUtils.php");// tprint
 include_once("libs/maLibForms.php");// mkTable, mkLiens, mkSelect ...
 
-
-
-mkForm("controleur.php");
-echo "Nom complet : ";
-mkInput("text", "name");
-echo "<br/> email tel ou facebook : ";
-mkInput("text", "contact");
-echo "<br/>  mot de passe : ";
-mkInput("text", "password");
-echo "<br/>";
-mkInput("submit", "action", "Créer mon compte");
-endForm();
-
-
-
-
-
-
-
-
-
-
 ?>
+
+<form action="controleur.php" method="get">
+    Nom complet :
+    <input type="text" name="name" value="" required/>
+    <br/> email tel ou facebook :
+    <input type="text" name="contact" value="" required/>
+    <br/>  mot de passe :
+    <input type="password" name="password" value="" required />
+    <br/>
+    <input type="submit" name="action" value="Créer mon compte" />
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

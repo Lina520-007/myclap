@@ -27,19 +27,32 @@
             break;
 
             case 'Se connecter':
-				
-                if ($name = valider('name'))
-					
-					
-                if ($password = valider('password'))
-					
+                $msg="";
+                if ($name = valider('name')){
+                   
+                   
+                if ($password = valider('password')){
+                   
                     if (verifUser($name,$password))
                        {
-						$qs = "?view=inventaire";
-					   
-					    	
-					   }
-            break;   
+                        $qs = "?view=accueil&msg=";
+                       }}}
+                else {$qs = "?view=login&msg=". urlencode('Identifiant ou mot de passe incorrect, veuillez réessayer');   }
+            break; 
+
+             case 'Ajouter l objet' :
+                if ($name = valider('name'))
+                if ($description = valider('description'))
+                if($bail = valider('bail'))
+                if ($categoryId = valider('categoryId'))
+                if ($stock = valider('stock'))
+                if ($photoUrl = valider('photoUrl'))
+                    {
+                       ajouterProduitEtPhoto($name, $description, $categoryId, $bail, $stock, $photoUrl);
+                    }
+                $qs = "?view=admin_gestion";
+            break;
+
 
 			case 'Logout': 
 				

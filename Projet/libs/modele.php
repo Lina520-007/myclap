@@ -231,4 +231,42 @@ function nombreEmpruntsEnAttente() {
    return SQLGetChamp($SQL);
 }
 
+function ajouterProduitEtPhoto($name, $description, $categoryId, $bail, $stock, $photoUrl) {
+   
+    $categoryId = (int)$categoryId;
+    $bail = (float)$bail;
+    $stock = (int)$stock;
+
+
+    $sqlProduit = "INSERT INTO product (name, description, category_id, bail, stock) VALUES ('$name', '$description', $categoryId, $bail, $stock)";
+                   
+    $idProduit = SQLInsert($sqlProduit);
+    if ($idProduit !== false && !empty($photoUrl)) {  
+        $sqlPhoto = "INSERT INTO product_photo (url, product_id, `index`) VALUES ('$photoUrl', $idProduit, 0)";            
+        SQLInsert($sqlPhoto); }  
+    return $idProduit;
+
+
+   
+}
+
+
+function listerCategories() {
+    $SQL = "SELECT id, name FROM category ORDER BY name ASC";
+    return parcoursRs(SQLSelect($SQL));
+}
+
+
+
+
+function listerMateriel() {
+    $SQL = "SELECT  p.name AS Nom,  p.stock AS Quantite, p.description AS Description, p.bail AS Caution, pp.url AS Photo FROM product p
+            LEFT JOIN product_photo pp ON p.id = pp.product_id AND pp.`index` = 0
+            ORDER BY p.name ASC";
+                     
+    return parcoursRs(SQLSelect($SQL));
+}
+
+
+
 ?>
