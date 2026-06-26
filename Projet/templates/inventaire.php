@@ -45,6 +45,7 @@
     <div class="dropdown elmtsFilter">
         <button class="dropdownBtn" type="button">▼ Catégories</button>
         <div class="dropdownElmts">
+            <label><input type="checkbox" name="categorie[]" value="all">Toutes</label>
             <?php foreach (listerCategory() as $category): ?>
                 <label><input type="checkbox" name="categorie[]" value="<?= $category['id'] ?>"><?php echo htmlspecialchars($category['name']) ?></label>
             <?php endforeach; ?>

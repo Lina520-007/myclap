@@ -165,14 +165,18 @@
             $Date      = valider("Date", "POST");
             $favoris   = valider("favoris", "POST");
 
+            if (is_array($categorie) && in_array("all", $categorie, true)) {
+                $categorie = null;
+            }
+
             $qs = "?view=inventaire";
             if ($categorie) {
                 foreach ($categorie as $cat) {
-                    $qs .= "&categorie[]=" . $cat;
+                    $qs .= "&categorie[]=" . urlencode($cat);
                 }
             }
-            if ($Date)    $qs .= "&Date=" . $Date;
-            if ($favoris) $qs .= "&favoris=" .$favoris;
+            if ($Date)    $qs .= "&Date=" . urlencode($Date);
+            if ($favoris) $qs .= "&favoris=" . urlencode($favoris);
             break;
 
 
